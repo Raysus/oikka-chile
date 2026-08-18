@@ -1,0 +1,112 @@
+.hero {
+  position: relative;
+  min-height: calc(100svh - var(--header-height));
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  background: #0d100f;
+  color: var(--color-hero-text);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  animation: zoom 20s var(--ease) forwards;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 9, 0.82) 0%, rgba(8, 10, 9, 0.35) 55%, rgba(8, 10, 9, 0.2) 100%),
+    linear-gradient(to top, rgba(8, 10, 9, 0.92) 0%, rgba(8, 10, 9, 0.3) 45%, rgba(8, 10, 9, 0.15) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) var(--space) clamp(2.75rem, 6vw, 4rem);
+  animation: rise 0.85s var(--ease) both;
+}
+
+.brand {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 11vw, 6.4rem);
+  letter-spacing: 0.08em;
+  line-height: 0.92;
+  color: var(--color-hero-text);
+}
+
+.title {
+  margin: 0 0 0.9rem;
+  max-width: 16ch;
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--color-hero-text);
+}
+
+.subtitle {
+  margin: 0 0 1.75rem;
+  max-width: 36ch;
+  color: var(--color-hero-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cta,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.2rem;
+  font-weight: 700;
+}
+
+.cta {
+  background: var(--color-accent);
+  color: white;
+}
+
+.cta:hover {
+  background: var(--color-accent-hover);
+}
+
+.secondary {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: var(--color-hero-text);
+}
+
+.secondary:hover {
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes zoom {
+  from { transform: scale(1.1); }
+  to { transform: scale(1); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media,
+  .content {
+    animation: none;
+  }
+}
