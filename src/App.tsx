@@ -3,6 +3,7 @@ import { HomePage } from './pages/HomePage'
 import { HistoriaPage } from './pages/HistoriaPage'
 import { ProposalsHub } from './proposals/ProposalsHub'
 import { OikkaCinematic } from './proposals/OikkaCinematic'
+import { OikkaKinetic } from './proposals/OikkaKinetic'
 import './App.css'
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/historia-y-biografias" element={<HistoriaPage />} />
         <Route path="/propuestas" element={<ProposalsHub />} />
-        <Route path="/propuesta-a" element={<Navigate to="/propuestas" replace />} />
+        <Route path="/propuesta-a" element={<OikkaKinetic />} />
         <Route path="/propuesta-b" element={<OikkaCinematic />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

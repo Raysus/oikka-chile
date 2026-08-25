@@ -9,8 +9,14 @@ const items = [
     text: 'Landing actual con hero carrusel, escuelas, OIKKA, linaje, videos e historia.',
   },
   {
+    to: '/propuesta-a',
+    tag: 'Extra A',
+    title: 'Kinética con rail de progreso',
+    text: 'Scroll guiado, pilares animados, linaje interactivo y galería con Framer Motion.',
+  },
+  {
     to: '/propuesta-b',
-    tag: 'Extra',
+    tag: 'Extra B',
     title: 'Cinemática por capítulos',
     text: 'Scroll-snap a pantalla completa, tipografía monumental y linaje interactivo.',
   },
