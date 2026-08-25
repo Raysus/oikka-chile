@@ -24,3 +24,11 @@ Textos, escuelas y etapas: `src/content.ts`
 | `npm run dev` | Desarrollo |
 | `npm run build` | Build producción |
 | `npm run preview` | Preview del build |
+
+
+## Analytics (ingresos y clase de prueba)
+
+- Cada visita cuenta como **ingreso** (`pageViews`).
+- Cada clic en «clase de prueba» (hero, header o contacto) suma `trialClassClicks`.
+- En la consola del navegador: `window.__oikkaStats()`.
+- Para Google Analytics 4, copia `.env.example` a `.env` y define `VITE_GA_MEASUREMENT_ID`.

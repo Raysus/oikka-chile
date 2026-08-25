@@ -13,6 +13,21 @@ export function Oikka() {
           <p className={styles.fullName}>{oikka.fullName}</p>
           <p className={styles.text}>{oikka.history}</p>
           <p className={styles.text}>{oikka.isshinryu}</p>
+
+          <div className={styles.values}>
+            <article className={styles.valueCard}>
+              <h3 className={styles.valueTitle}>{oikka.mission.title}</h3>
+              <p className={styles.valueText}>{oikka.mission.text}</p>
+            </article>
+            <article className={styles.valueCard}>
+              <h3 className={styles.valueTitle}>{oikka.vision.title}</h3>
+              <p className={styles.valueText}>{oikka.vision.text}</p>
+            </article>
+            <article className={`${styles.valueCard} ${styles.valueCardWide}`}>
+              <h3 className={styles.valueTitle}>{oikka.identity.title}</h3>
+              <p className={styles.valueText}>{oikka.identity.text}</p>
+            </article>
+          </div>
         </div>
 
         <aside className={styles.aside}>

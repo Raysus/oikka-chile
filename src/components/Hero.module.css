@@ -20,8 +20,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(8, 10, 9, 0.82) 0%, rgba(8, 10, 9, 0.35) 55%, rgba(8, 10, 9, 0.2) 100%),
-    linear-gradient(to top, rgba(8, 10, 9, 0.92) 0%, rgba(8, 10, 9, 0.3) 45%, rgba(8, 10, 9, 0.15) 100%);
+    linear-gradient(90deg, rgba(8, 10, 9, 0.84) 0%, rgba(8, 10, 9, 0.4) 55%, rgba(8, 10, 9, 0.22) 100%),
+    linear-gradient(to top, rgba(8, 10, 9, 0.94) 0%, rgba(8, 10, 9, 0.35) 48%, rgba(8, 10, 9, 0.15) 100%);
 }
 
 .content {
@@ -55,9 +55,68 @@
 }
 
 .subtitle {
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.35rem;
   max-width: 36ch;
   color: var(--color-hero-muted);
+}
+
+.carousel {
+  margin: 0 0 1.75rem;
+  max-width: 38rem;
+  min-height: 7.5rem;
+  padding: 1rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.slideKicker {
+  margin: 0 0 0.35rem;
+  color: var(--color-pastel-yellow);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.slideTitle {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  animation: slideIn 0.55s var(--ease) both;
+}
+
+.slideText {
+  margin: 0 0 0.9rem;
+  max-width: 42ch;
+  color: var(--color-hero-muted);
+  font-size: 0.95rem;
+  animation: slideIn 0.65s var(--ease) both;
+}
+
+.dots {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.dotActive {
+  background: var(--color-pastel-yellow);
+  transform: scale(1.25);
 }
 
 .actions {
@@ -104,9 +163,16 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(0.55rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .media,
-  .content {
+  .content,
+  .slideTitle,
+  .slideText {
     animation: none;
   }
 }

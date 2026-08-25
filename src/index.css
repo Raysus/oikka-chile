@@ -12,6 +12,8 @@
   --color-accent-hover: #7d0e0e;
   --color-hero-text: #f4f6f5;
   --color-hero-muted: #c5ccc8;
+  --color-pastel-yellow: #f0d978;
+  --color-pastel-yellow-soft: #faf3d0;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Sora', sans-serif;
   --header-height: 4.25rem;
@@ -36,7 +38,8 @@ body {
   font-family: var(--font-body);
   background:
     radial-gradient(circle at 0% 0%, rgba(158, 18, 18, 0.07), transparent 30%),
-    linear-gradient(180deg, #f7f8f7 0%, var(--color-bg) 20%, var(--color-bg) 100%);
+    radial-gradient(circle at 100% 8%, color-mix(in srgb, var(--color-pastel-yellow) 22%, transparent), transparent 34%),
+    linear-gradient(180deg, #faf6e8 0%, var(--color-bg) 18%, var(--color-bg) 100%);
   color: var(--color-text);
   line-height: 1.6;
   text-rendering: optimizeLegibility;

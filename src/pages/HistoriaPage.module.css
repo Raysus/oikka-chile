@@ -1,0 +1,131 @@
+.main {
+  padding: calc(var(--header-height) + 2.5rem) 0 var(--section-y);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--color-pastel-yellow) 28%, transparent), transparent 36%),
+    var(--color-bg);
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space);
+}
+
+.eyebrow {
+  margin: 0 0 0.65rem;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-size: clamp(2.8rem, 7vw, 4.6rem);
+}
+
+.lead {
+  margin: 0 0 clamp(2rem, 5vw, 3rem);
+  max-width: 48ch;
+  color: var(--color-muted);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.list {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.item {
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.item:hover {
+  border-color: color-mix(in srgb, var(--color-pastel-yellow) 55%, var(--color-line));
+}
+
+.itemOpen {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-pastel-yellow-soft) 70%, white);
+}
+
+.itemTitle {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.itemSummary {
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+.panel {
+  padding: 1.4rem 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-top: 4px solid var(--color-pastel-yellow);
+  min-height: 18rem;
+}
+
+.panelTitle {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.panelSummary {
+  margin: 0 0 1rem;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.panelBody {
+  margin: 0 0 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.back,
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.1rem;
+  font-weight: 700;
+}
+
+.back {
+  border: 1px solid var(--color-line);
+}
+
+.cta {
+  background: var(--color-accent);
+  color: white;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
