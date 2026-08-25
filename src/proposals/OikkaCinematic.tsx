@@ -7,9 +7,7 @@ import {
   heroSlides,
   oikka,
   schools,
-  site,
 } from '../content'
-import { trackTrialClassClick } from '../lib/analytics'
 import { withBase } from '../lib/paths'
 import { LineageGraph } from '../components/Lineage'
 import styles from './OikkaCinematic.module.css'
@@ -35,9 +33,7 @@ export function OikkaCinematic() {
       <header className={styles.bar}>
         <Link to="/propuestas">← Propuestas</Link>
         <span>Extra · Cinemática</span>
-        <a href={withBase('/#contacto')} onClick={() => trackTrialClassClick('proposal-b-header')}>
-          Contacto
-        </a>
+        <a href={withBase('/#contacto')}>Contacto</a>
       </header>
 
       <nav className={styles.dots} aria-label="Capítulos">
@@ -139,12 +135,8 @@ export function OikkaCinematic() {
                 <img key={g.src} src={g.src} alt={g.alt} />
               ))}
             </div>
-            <a
-              className={styles.cta}
-              href={site.cta.href.startsWith('#') ? `/${site.cta.href}` : site.cta.href}
-              onClick={() => trackTrialClassClick('proposal-b-end')}
-            >
-              {site.cta.label}
+            <a className={styles.cta} href={withBase('/#contacto')}>
+              Contacto
             </a>
           </div>
         </section>

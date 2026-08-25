@@ -4,10 +4,6 @@ export const site = {
   name: 'OIKKA Isshin Ryu Karate Chile',
   shortName: 'OIKKA Chile',
   tagline: 'Okinawa Isshin Ryu Karate Kobudo Association en Chile',
-  cta: {
-    label: 'Agendar clase de prueba',
-    href: '#contacto',
-  },
 }
 
 export const navLinks = [
@@ -287,11 +283,7 @@ export const gallery = [
 
 export const contact = {
   title: 'Contacto',
-  text: 'Escríbenos para conocer la escuela más cercana o coordinar una clase de prueba.',
-  trialCta: {
-    label: 'Quiero mi clase de prueba',
-    href: 'mailto:contacto@isshinryutemuco.cl?subject=Clase%20de%20prueba%20OIKKA%20Chile',
-  },
+  text: 'Escríbenos para conocer la escuela más cercana o resolver dudas sobre OIKKA Chile.',
   email: {
     label: 'contacto@isshinryutemuco.cl',
     href: 'mailto:contacto@isshinryutemuco.cl',

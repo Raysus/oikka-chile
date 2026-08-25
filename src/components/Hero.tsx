@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { hero, heroSlides, site } from '../content'
-import { trackTrialClassClick } from '../lib/analytics'
+import { hero, heroSlides } from '../content'
 import styles from './Hero.module.css'
 
 const INTERVAL_MS = 6500
@@ -58,15 +57,11 @@ export function Hero() {
         </div>
 
         <div className={styles.actions}>
-          <a
-            href={site.cta.href}
-            className={styles.cta}
-            onClick={() => trackTrialClassClick('hero')}
-          >
-            {site.cta.label}
-          </a>
-          <a href="#oikka" className={styles.secondary}>
+          <a href="#oikka" className={styles.cta}>
             Qué es OIKKA
+          </a>
+          <a href="#contacto" className={styles.secondary}>
+            Contacto
           </a>
         </div>
       </div>

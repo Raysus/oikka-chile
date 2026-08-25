@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { navLinks, site } from '../content'
-import { trackTrialClassClick } from '../lib/analytics'
 import { withBase } from '../lib/paths'
 import styles from './Header.module.css'
 
@@ -67,16 +66,6 @@ export function Header() {
               </Link>
             ),
           )}
-          <a
-            href={withBase(site.cta.href)}
-            className={styles.cta}
-            onClick={() => {
-              trackTrialClassClick('header')
-              setOpen(false)
-            }}
-          >
-            {site.cta.label}
-          </a>
         </nav>
       </div>
     </header>

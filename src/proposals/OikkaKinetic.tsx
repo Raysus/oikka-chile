@@ -7,8 +7,7 @@ import {
   useScroll,
   useSpring,
 } from 'framer-motion'
-import { angiVideos, gallery, hero, heroSlides, oikka, schools, site } from '../content'
-import { trackTrialClassClick } from '../lib/analytics'
+import { angiVideos, gallery, hero, heroSlides, oikka, schools } from '../content'
 import { withBase } from '../lib/paths'
 import { LineageGraph } from '../components/Lineage'
 import styles from './OikkaKinetic.module.css'
@@ -52,9 +51,7 @@ export function OikkaKinetic() {
       <header className={styles.bar}>
         <Link to="/propuestas">← Propuestas</Link>
         <span>Extra A · Kinética</span>
-        <a href={withBase('/#contacto')} onClick={() => trackTrialClassClick('proposal-a-header')}>
-          Contacto
-        </a>
+        <a href={withBase('/#contacto')}>Contacto</a>
       </header>
 
       <aside className={styles.rail} aria-label="Secciones">
@@ -216,12 +213,11 @@ export function OikkaKinetic() {
             </div>
             <motion.a
               className={styles.cta}
-              href={withBase(site.cta.href)}
+              href={withBase('/#contacto')}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => trackTrialClassClick('proposal-a-cta')}
             >
-              {site.cta.label}
+              Contacto
             </motion.a>
           </div>
         </section>

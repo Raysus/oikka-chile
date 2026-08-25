@@ -1,5 +1,4 @@
 import { contact, site } from '../content'
-import { trackTrialClassClick } from '../lib/analytics'
 import styles from './Contact.module.css'
 
 export function Contact() {
@@ -14,14 +13,7 @@ export function Contact() {
           <p className={styles.text}>{contact.text}</p>
         </div>
         <div className={styles.actions}>
-          <a
-            className={styles.primary}
-            href={contact.trialCta.href}
-            onClick={() => trackTrialClassClick('contact-primary')}
-          >
-            {contact.trialCta.label}
-          </a>
-          <a className={styles.secondary} href={contact.email.href}>
+          <a className={styles.primary} href={contact.email.href}>
             {contact.email.label}
           </a>
           <a
