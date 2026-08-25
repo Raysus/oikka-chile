@@ -114,7 +114,7 @@ export type LineageNode = {
 }
 
 export const lineageIntro =
-  'Linaje que alimenta Isshin Ryu: de China y Okinawa hasta el Maestro Tatsuo Shimabuku y su discípulo Angi Uezu. Arrastra el mapa, haz zoom y toca un maestro para ver el detalle.'
+  'Linaje que alimenta Isshin Ryu: de China y Okinawa hasta el Maestro Tatsuo Shimabuku y su discípulo Angi Uezu. Explora el mapa a pantalla completa: arrastra, haz zoom y elige un maestro.'
 
 export type LineageEdge = { id: string; source: string; target: string; label?: string }
 
@@ -137,19 +137,19 @@ export const lineageEdges: LineageEdge[] = [
 
 /** Posiciones del layout (coordenadas del canvas React Flow) */
 export const lineagePositions: Record<string, { x: number; y: number }> = {
-  damura: { x: 280, y: 0 },
-  kusanku: { x: 520, y: 80 },
-  yara: { x: 280, y: 110 },
-  sakagawa: { x: 280, y: 230 },
-  matsumura: { x: 280, y: 350 },
-  itosu: { x: 40, y: 430 },
-  higaonna: { x: 520, y: 350 },
-  motobu: { x: 40, y: 560 },
-  miyagi: { x: 220, y: 560 },
-  kiyan: { x: 400, y: 560 },
-  taira: { x: 580, y: 560 },
-  shimabuku: { x: 280, y: 720 },
-  uezu: { x: 280, y: 880 },
+  damura: { x: 420, y: 40 },
+  kusanku: { x: 620, y: 220 },
+  yara: { x: 220, y: 220 },
+  sakagawa: { x: 420, y: 400 },
+  matsumura: { x: 420, y: 580 },
+  itosu: { x: 80, y: 760 },
+  higaonna: { x: 760, y: 620 },
+  motobu: { x: 40, y: 980 },
+  miyagi: { x: 280, y: 980 },
+  kiyan: { x: 560, y: 980 },
+  taira: { x: 820, y: 980 },
+  shimabuku: { x: 420, y: 1240 },
+  uezu: { x: 420, y: 1480 },
 }
 
 export const lineageNodes: LineageNode[] = [
@@ -162,47 +162,47 @@ export const lineageNodes: LineageNode[] = [
   },
   {
     id: 'yara',
-    name: 'Master Chatan Yara',
+    name: 'Maestro Chatan Yara',
     style: 'Okinawa',
     note: 'Figura temprana del karate de Okinawa; puente entre influencias chinas y la isla.',
   },
   {
     id: 'kusanku',
-    name: 'Master Kusanku',
+    name: 'Maestro Kusanku',
     style: 'China',
     note: 'Maestro chino vinculado a Chatan Yara; su nombre vive en el kata Kusanku.',
   },
   {
     id: 'sakagawa',
-    name: 'Master Tode Sakagawa',
+    name: 'Maestro Tode Sakagawa',
     years: '1733–1815',
     style: 'Tode · Okinawa',
     note: 'Consolidó el “tode” en Okinawa; base de generaciones posteriores de Shuri-Te.',
   },
   {
     id: 'matsumura',
-    name: 'Master Sokon Matsumura (Bushi)',
+    name: 'Maestro Sokon Matsumura (Bushi)',
     years: '1808–1899',
     style: 'Shuri-Te',
     note: 'Bushi Matsumura: pilar del Shuri-Te y del karate clásico de Okinawa.',
   },
   {
     id: 'itosu',
-    name: 'Master Itosu Yasutsune',
+    name: 'Maestro Itosu Yasutsune',
     years: '1831–1915',
     style: 'Shuri-Te',
     note: 'Sistematizó el karate para la enseñanza; influyó en el Shorin-Ryu moderno.',
   },
   {
     id: 'higaonna',
-    name: 'Master Kanryo Higaonna',
+    name: 'Maestro Kanryo Higaonna',
     years: '1853–1916',
     style: 'Naha-Te · Tou-Te',
     note: 'Trajo métodos de respiración y Naha-Te desde Fujian (China).',
   },
   {
     id: 'motobu',
-    name: 'Master Choki Motobu',
+    name: 'Maestro Choki Motobu',
     years: '1871–1941',
     style: 'Shorin-Ryu (Tomari-Te, Shuri-Te)',
     note: 'Enseñó a Tatsuo Shimabuku. Combate práctico y Shorin-Ryu.',
@@ -210,7 +210,7 @@ export const lineageNodes: LineageNode[] = [
   },
   {
     id: 'miyagi',
-    name: 'Master Chojun Miyagi',
+    name: 'Maestro Chojun Miyagi',
     years: '1888–1953',
     style: 'Goju-Ryu (Naha-Te)',
     note: 'Fundador del Goju-Ryu. Shimabuku estudió con él en 1922.',
@@ -218,7 +218,7 @@ export const lineageNodes: LineageNode[] = [
   },
   {
     id: 'kiyan',
-    name: 'Master Chotoku Kiyan',
+    name: 'Maestro Chotoku Kiyan',
     years: '1870–1945',
     style: 'Shorin-Ryu (Shuri-Te)',
     note: 'Maestro principal de Shimabuku en Shorin-Ryu (desde 1923).',
@@ -226,7 +226,7 @@ export const lineageNodes: LineageNode[] = [
   },
   {
     id: 'taira',
-    name: 'Master Shinken Taira',
+    name: 'Maestro Shinken Taira',
     years: '1897–1970',
     style: 'Ryukyu Kobudo',
     note: 'Armas de Okinawa (bo, sai, tonfa, nunchaku). Shimabuku estudió con él en 1958.',
@@ -234,14 +234,14 @@ export const lineageNodes: LineageNode[] = [
   },
   {
     id: 'shimabuku',
-    name: 'Master Tatsuo Shimabuku',
+    name: 'Maestro Tatsuo Shimabuku',
     years: '1908–1975',
     style: 'Fundador de Isshin-Ryu (1953)',
     note: 'Abrió Isshin-Ryu Karate-Do en 1953, uniendo Shorin, Goju y Kobudo en “un solo corazón”.',
   },
   {
     id: 'uezu',
-    name: 'Master Angi Uezu',
+    name: 'Maestro Angi Uezu',
     years: '1935–2024',
     style: 'OIKKA · Isshin-Ryu',
     note: 'Yerno y alumno principal de Shimabuku. Fundó OIKKA (1990) y Junken Karate-Do (1992). Presidente Emérito hasta su fallecimiento en 2024.',

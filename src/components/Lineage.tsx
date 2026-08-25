@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   Background,
   Controls,
@@ -8,6 +8,7 @@ import {
   ReactFlowProvider,
   useEdgesState,
   useNodesState,
+  useReactFlow,
   type Edge,
   type Node,
 } from '@xyflow/react'
@@ -25,7 +26,13 @@ import styles from './Lineage.module.css'
 
 const FOCUS = new Set(['motobu', 'miyagi', 'kiyan', 'taira', 'shimabuku', 'uezu'])
 
+const QUICK = ['shimabuku', 'uezu', 'kiyan', 'miyagi', 'motobu', 'taira'] as const
+
 const nodeTypes = { master: LineageMasterNode }
+
+function displayName(name: string) {
+  return name.replace(/^Maestro\s+/, '')
+}
 
 function buildNodes(activeId: string): MasterFlowNode[] {
   return lineageNodes.map((master) => ({
@@ -52,32 +59,29 @@ function buildEdges(activeId: string): Edge[] {
       animated: hot,
       style: {
         stroke: hot ? '#9e1212' : '#d4c48a',
-        strokeWidth: hot ? 2.4 : 1.5,
+        strokeWidth: hot ? 2.8 : 1.8,
       },
       labelStyle: {
         fill: hot ? '#9e1212' : '#8a7420',
         fontWeight: 700,
-        fontSize: 11,
+        fontSize: 12,
       },
       labelBgStyle: { fill: '#fff9e8', fillOpacity: 0.92 },
       markerEnd: {
         type: MarkerType.ArrowClosed,
         color: hot ? '#9e1212' : '#d4c48a',
-        width: 16,
-        height: 16,
+        width: 18,
+        height: 18,
       },
     }
   })
 }
 
-function LineageCanvas({
-  variant = 'light',
-}: {
-  variant?: 'light' | 'dark'
-}) {
+function LineageCanvas({ variant = 'light' }: { variant?: 'light' | 'dark' }) {
   const [activeId, setActiveId] = useState('shimabuku')
   const [nodes, setNodes, onNodesChange] = useNodesState(buildNodes(activeId))
   const [edges, setEdges, onEdgesChange] = useEdgesState(buildEdges(activeId))
+  const { fitView, setCenter, getNode } = useReactFlow()
 
   const active: LineageNode =
     lineageNodes.find((n) => n.id === activeId) ?? lineageNodes[lineageNodes.length - 2]
@@ -87,9 +91,25 @@ function LineageCanvas({
       setActiveId(id)
       setNodes(buildNodes(id))
       setEdges(buildEdges(id))
+      const node = getNode(id)
+      if (node) {
+        const w = node.measured?.width ?? 260
+        const h = node.measured?.height ?? 120
+        void setCenter(node.position.x + w / 2, node.position.y + h / 2, {
+          zoom: 0.95,
+          duration: 480,
+        })
+      }
     },
-    [setEdges, setNodes],
+    [getNode, setCenter, setEdges, setNodes],
   )
+
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      void fitView({ padding: 0.12, duration: 400 })
+    }, 80)
+    return () => window.clearTimeout(id)
+  }, [fitView])
 
   const onNodeClick = useCallback(
     (_: React.MouseEvent, node: Node) => {
@@ -100,11 +120,27 @@ function LineageCanvas({
 
   const bgColor = variant === 'dark' ? '#15120c' : '#faf6e8'
   const miniMask = variant === 'dark' ? '#2a2418' : '#efe6c4'
-
-  const defaultViewport = useMemo(() => ({ x: 40, y: 20, zoom: 0.82 }), [])
+  const defaultViewport = useMemo(() => ({ x: 0, y: 0, zoom: 0.72 }), [])
 
   return (
     <div className={variant === 'dark' ? `${styles.layout} ${styles.layoutDark}` : styles.layout}>
+      <div className={styles.quick} role="toolbar" aria-label="Maestros destacados">
+        {QUICK.map((id) => {
+          const master = lineageNodes.find((n) => n.id === id)
+          if (!master) return null
+          return (
+            <button
+              key={id}
+              type="button"
+              className={id === activeId ? styles.quickOn : styles.quickBtn}
+              onClick={() => select(id)}
+            >
+              {displayName(master.name)}
+            </button>
+          )
+        })}
+      </div>
+
       <div className={styles.canvasWrap}>
         <ReactFlow
           nodes={nodes}
@@ -114,15 +150,15 @@ function LineageCanvas({
           onNodeClick={onNodeClick}
           nodeTypes={nodeTypes}
           fitView
-          fitViewOptions={{ padding: 0.18 }}
-          minZoom={0.45}
-          maxZoom={1.6}
+          fitViewOptions={{ padding: 0.12 }}
+          minZoom={0.35}
+          maxZoom={1.8}
           defaultViewport={defaultViewport}
           proOptions={{ hideAttribution: true }}
           nodesConnectable={false}
           edgesReconnectable={false}
         >
-          <Background color={variant === 'dark' ? '#3a3220' : '#e2d7a8'} gap={22} size={1} />
+          <Background color={variant === 'dark' ? '#3a3220' : '#e2d7a8'} gap={28} size={1.2} />
           <Controls showInteractive={false} />
           <MiniMap
             pannable
@@ -132,29 +168,29 @@ function LineageCanvas({
             style={{ background: bgColor }}
           />
         </ReactFlow>
-        <p className={styles.hint}>Arrastra · zoom · clic en un maestro</p>
-      </div>
+        <p className={styles.hint}>Mapa a gran escala · arrastra · zoom · elige un maestro</p>
 
-      <AnimatePresence mode="wait">
-        <motion.aside
-          key={active.id}
-          className={styles.detail}
-          aria-live="polite"
-          initial={{ opacity: 0, x: 16 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -10 }}
-          transition={{ duration: 0.28 }}
-        >
-          <p className={styles.detailLabel}>Detalle</p>
-          <h3 className={styles.detailName}>{active.name}</h3>
-          {active.years ? <p className={styles.detailYears}>{active.years}</p> : null}
-          {active.style ? <p className={styles.detailStyle}>{active.style}</p> : null}
-          {active.note ? <p className={styles.detailNote}>{active.note}</p> : null}
-          {active.yearLink ? (
-            <p className={styles.detailHint}>Vínculo con Shimabuku: {active.yearLink}</p>
-          ) : null}
-        </motion.aside>
-      </AnimatePresence>
+        <AnimatePresence mode="wait">
+          <motion.aside
+            key={active.id}
+            className={styles.detail}
+            aria-live="polite"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.28 }}
+          >
+            <p className={styles.detailLabel}>Maestro seleccionado</p>
+            <h3 className={styles.detailName}>{displayName(active.name)}</h3>
+            {active.years ? <p className={styles.detailYears}>{active.years}</p> : null}
+            {active.style ? <p className={styles.detailStyle}>{active.style}</p> : null}
+            {active.note ? <p className={styles.detailNote}>{active.note}</p> : null}
+            {active.yearLink ? (
+              <p className={styles.detailHint}>Vínculo con Shimabuku: {active.yearLink}</p>
+            ) : null}
+          </motion.aside>
+        </AnimatePresence>
+      </div>
     </div>
   )
 }

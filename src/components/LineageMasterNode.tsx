@@ -28,14 +28,18 @@ export function LineageMasterNode({ data }: NodeProps<MasterFlowNode>) {
       ]
         .filter(Boolean)
         .join(' ')}
-      initial={{ opacity: 0, scale: 0.85, y: 12 }}
-      animate={{ opacity: 1, scale: selected ? 1.04 : 1, y: 0 }}
-      transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-      whileHover={{ scale: 1.06 }}
+      initial={{ opacity: 0, scale: 0.88, y: 14 }}
+      animate={{ opacity: 1, scale: selected ? 1.05 : 1, y: 0 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+      whileHover={{ scale: 1.07 }}
     >
       <Handle type="target" position={Position.Top} className={styles.handle} />
-      {master.yearLink ? <span className={styles.year}>{master.yearLink}</span> : null}
-      <span className={styles.name}>{master.name}</span>
+      <div className={styles.meta}>
+        <span className={styles.role}>Maestro</span>
+        {master.yearLink ? <span className={styles.year}>{master.yearLink}</span> : null}
+      </div>
+      <span className={styles.name}>{master.name.replace(/^Maestro\s+/, '')}</span>
+      {master.years ? <span className={styles.years}>{master.years}</span> : null}
       {master.style ? <span className={styles.style}>{master.style}</span> : null}
       <Handle type="source" position={Position.Bottom} className={styles.handle} />
     </motion.div>
