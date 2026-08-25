@@ -90,7 +90,7 @@ export const oikka = {
     hrefLabel: 'oikka.com',
   },
   history:
-    'La OIKKA se establece en 1990 por el Maestro Angi Uezu. A partir del 1 de febrero de 2007, el Maestro Uezu nombra al Maestro Christopher Chase como su sucesor y Presidente de la OIKKA. El Maestro Uezu sigue activo como Presidente Emérito y Asesor Especial.',
+    'La OIKKA se establece en 1990 por el Maestro Angi Uezu. A partir del 1 de febrero de 2007, el Maestro Uezu nombra al Maestro Christopher Chase como su sucesor y Presidente de la OIKKA. El Maestro Uezu sirvió como Presidente Emérito y Asesor Especial hasta su fallecimiento en 2024; su legado sigue guiando a la asociación.',
   isshinryu:
     'Isshin Ryu (“un corazón / una mente”) fue formalmente introducido en 1953 por el Maestro Tatsuo Shimabuku de Okinawa, Japón. Soke Shimabuku estudió Shorin-Ryu bajo Choki Motobu y Chotoku Kyan, reforzó su práctica con Chojun Miyagi (Goju Ryu) y estudió armas (Bo, Sai, Tonfa, Nunchaku) con Shinken Taira. Isshin Ryu combina lo mejor de estos linajes en el karate rápido y preciso de Okinawa.',
   mission: {
@@ -246,9 +246,9 @@ export const lineageNodes: LineageNode[] = [
   {
     id: 'uezu',
     name: 'Master Angi Uezu',
-    years: '1935–',
+    years: '1935–2024',
     style: 'OIKKA · Isshin-Ryu',
-    note: 'Yerno y alumno principal de Shimabuku. Fundó OIKKA (1990) y Junken Karate-Do (1992).',
+    note: 'Yerno y alumno principal de Shimabuku. Fundó OIKKA (1990) y Junken Karate-Do (1992). Presidente Emérito hasta su fallecimiento en 2024.',
   },
 ]
 

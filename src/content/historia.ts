@@ -85,10 +85,10 @@ export const historiaEntries: HistoriaEntry[] = [
   {
     id: 'uezu',
     title: 'Angi Uezu',
-    summary: 'Yerno y alumno principal · fundador de OIKKA (1990).',
+    summary: '1935–2024 · fundador de OIKKA · Presidente Emérito.',
     body: [
-      'Angi Uezu (n. 1935) fue yerno y alumno principal de Shimabuku. Fundó la Okinawa Isshin Ryu Karate Kobudo Association (OIKKA) en 1990 y Junken Karate-Do en 1992.',
-      'Hoy es Presidente Emérito y Asesor Especial de OIKKA; su enseñanza sigue guiando a la asociación.',
+      'Angi Uezu (1935–2024) fue yerno y alumno principal de Shimabuku. Fundó la Okinawa Isshin Ryu Karate Kobudo Association (OIKKA) en 1990 y Junken Karate-Do en 1992.',
+      'Sirvió como Presidente Emérito y Asesor Especial de OIKKA hasta su fallecimiento en 2024. Su enseñanza y legado siguen guiando a la asociación.',
     ],
   },
   {
