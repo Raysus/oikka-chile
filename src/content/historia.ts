@@ -164,11 +164,11 @@ export const historiaEntries: HistoriaEntry[] = [
   },
   {
     id: 'raul',
-    title: 'Raúl Gutiérrez',
-    summary: 'Sitios web y apoyo digital · OIKKA Chile / Isshin Akira.',
+    title: 'Raúl Gutiérrez Elgueta',
+    summary: 'Figura del entorno Isshin Akira / OIKKA Chile.',
     body: [
-      'Raúl Gutiérrez colabora con OIKKA Chile y el Dojo Isshin Akira Temuco en el desarrollo y mantención de los sitios web y el apoyo digital de la asociación.',
-      'Su trabajo busca acercar la historia, las escuelas y el día a día del Isshin Ryu a estudiantes y familias, con plataformas claras en celular y computador.',
+      'Raúl Gutiérrez Elgueta forma parte del índice histórico del Dojo Isshin Akira Temuco. La ficha detallada se irá completando a partir de los archivos de la escuela y de OIKKA Chile.',
+      'Además colabora con OIKKA Chile y el Dojo Isshin Akira Temuco en el desarrollo y mantención de los sitios web y el apoyo digital de la asociación.',
     ],
   },
 ]
