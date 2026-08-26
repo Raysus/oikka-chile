@@ -118,6 +118,8 @@ export type LineageNode = {
   style?: string
   note?: string
   yearLink?: string
+  /** Retrato del maestro (si existe archivo histórico) */
+  photo?: string
 }
 
 export const lineageIntro =
@@ -185,6 +187,7 @@ export const lineageNodes: LineageNode[] = [
     years: '1733–1815',
     style: 'Tode · Okinawa',
     note: 'Consolidó el “tode” en Okinawa; base de generaciones posteriores de Shuri-Te.',
+    photo: assetUrl('images/masters/sakagawa.jpg'),
   },
   {
     id: 'matsumura',
@@ -192,6 +195,7 @@ export const lineageNodes: LineageNode[] = [
     years: '1808–1899',
     style: 'Shuri-Te',
     note: 'Bushi Matsumura: pilar del Shuri-Te y del karate clásico de Okinawa.',
+    photo: assetUrl('images/masters/matsumura.jpg'),
   },
   {
     id: 'itosu',
@@ -199,6 +203,7 @@ export const lineageNodes: LineageNode[] = [
     years: '1831–1915',
     style: 'Shuri-Te',
     note: 'Sistematizó el karate para la enseñanza; influyó en el Shorin-Ryu moderno.',
+    photo: assetUrl('images/masters/itosu.jpg'),
   },
   {
     id: 'higaonna',
@@ -206,6 +211,7 @@ export const lineageNodes: LineageNode[] = [
     years: '1853–1916',
     style: 'Naha-Te · Tou-Te',
     note: 'Trajo métodos de respiración y Naha-Te desde Fujian (China).',
+    photo: assetUrl('images/masters/higaonna.jpg'),
   },
   {
     id: 'motobu',
@@ -214,6 +220,7 @@ export const lineageNodes: LineageNode[] = [
     style: 'Shorin-Ryu (Tomari-Te, Shuri-Te)',
     note: 'Enseñó a Tatsuo Shimabuku. Combate práctico y Shorin-Ryu.',
     yearLink: '1922',
+    photo: assetUrl('images/masters/motobu.jpg'),
   },
   {
     id: 'miyagi',
@@ -222,6 +229,7 @@ export const lineageNodes: LineageNode[] = [
     style: 'Goju-Ryu (Naha-Te)',
     note: 'Fundador del Goju-Ryu. Shimabuku estudió con él en 1922.',
     yearLink: '1922',
+    photo: assetUrl('images/masters/miyagi.jpg'),
   },
   {
     id: 'kiyan',
@@ -230,6 +238,7 @@ export const lineageNodes: LineageNode[] = [
     style: 'Shorin-Ryu (Shuri-Te)',
     note: 'Maestro principal de Shimabuku en Shorin-Ryu (desde 1923).',
     yearLink: '1923',
+    photo: assetUrl('images/masters/kiyan.jpg'),
   },
   {
     id: 'taira',
@@ -238,6 +247,7 @@ export const lineageNodes: LineageNode[] = [
     style: 'Ryukyu Kobudo',
     note: 'Armas de Okinawa (bo, sai, tonfa, nunchaku). Shimabuku estudió con él en 1958.',
     yearLink: '1958',
+    photo: assetUrl('images/masters/taira.jpg'),
   },
   {
     id: 'shimabuku',
@@ -245,6 +255,7 @@ export const lineageNodes: LineageNode[] = [
     years: '1908–1975',
     style: 'Fundador de Isshin-Ryu (1953)',
     note: 'Abrió Isshin-Ryu Karate-Do en 1953, uniendo Shorin, Goju y Kobudo en “un solo corazón”.',
+    photo: assetUrl('images/masters/shimabuku.jpg'),
   },
   {
     id: 'uezu',
@@ -252,6 +263,7 @@ export const lineageNodes: LineageNode[] = [
     years: '1935–2024',
     style: 'OIKKA · Isshin-Ryu',
     note: 'Yerno y alumno principal de Shimabuku. Fundó OIKKA (1990) y Junken Karate-Do (1992). Presidente Emérito hasta su fallecimiento en 2024.',
+    photo: assetUrl('images/masters/uezu.jpg'),
   },
 ]
 

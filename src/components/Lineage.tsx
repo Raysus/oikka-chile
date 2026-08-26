@@ -181,9 +181,26 @@ function LineageCanvas({ variant = 'light' }: { variant?: 'light' | 'dark' }) {
             transition={{ duration: 0.28 }}
           >
             <p className={styles.detailLabel}>Maestro seleccionado</p>
-            <h3 className={styles.detailName}>{displayName(active.name)}</h3>
-            {active.years ? <p className={styles.detailYears}>{active.years}</p> : null}
-            {active.style ? <p className={styles.detailStyle}>{active.style}</p> : null}
+            <div className={styles.detailTop}>
+              {active.photo ? (
+                <img className={styles.detailPhoto} src={active.photo} alt="" />
+              ) : (
+                <span className={styles.detailAvatar} aria-hidden>
+                  {displayName(active.name)
+                    .split(/\s+/)
+                    .filter(Boolean)
+                    .slice(0, 2)
+                    .map((w) => w[0])
+                    .join('')
+                    .toUpperCase()}
+                </span>
+              )}
+              <div>
+                <h3 className={styles.detailName}>{displayName(active.name)}</h3>
+                {active.years ? <p className={styles.detailYears}>{active.years}</p> : null}
+                {active.style ? <p className={styles.detailStyle}>{active.style}</p> : null}
+              </div>
+            </div>
             {active.note ? <p className={styles.detailNote}>{active.note}</p> : null}
             {active.yearLink ? (
               <p className={styles.detailHint}>Vínculo con Shimabuku: {active.yearLink}</p>

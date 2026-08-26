@@ -157,10 +157,36 @@
   text-transform: uppercase;
 }
 
+.detailTop {
+  display: grid;
+  grid-template-columns: 5.25rem 1fr;
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.detailPhoto,
+.detailAvatar {
+  width: 5.25rem;
+  height: 6.4rem;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid rgba(240, 217, 120, 0.45);
+  background: #2a2418;
+}
+
+.detailAvatar {
+  display: grid;
+  place-items: center;
+  color: var(--color-pastel-yellow);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+}
+
 .detailName {
   margin: 0 0 0.4rem;
   color: var(--color-hero-text);
-  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.15rem);
 }
 
 .detailYears,
