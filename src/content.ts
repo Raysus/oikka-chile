@@ -71,10 +71,8 @@ export const schools = [
     name: 'Dojo Bushin Kan',
     city: 'Los Ángeles',
     lead: 'Sensei Cristian Jarpa Bucher',
-    website: 'https://www.facebook.com/Bushinkan-Isshinryu-Los-Angeles-180054852499678/',
-    websiteLabel: 'Facebook Bushinkan',
-    email: 'bushinkanlosangeles@gmail.com',
-    emailHref: 'mailto:bushinkanlosangeles@gmail.com',
+    pending: true,
+    pendingNote: 'Contacto por confirmar',
   },
 ] as const
 

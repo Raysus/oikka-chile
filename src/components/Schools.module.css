@@ -83,6 +83,12 @@
   text-underline-offset: 0.18em;
 }
 
+.pending {
+  color: var(--color-muted);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
 @media (max-width: 900px) {
   .list {
     grid-template-columns: 1fr;

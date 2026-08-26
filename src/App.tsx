@@ -1,9 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { HistoriaPage } from './pages/HistoriaPage'
-import { ProposalsHub } from './proposals/ProposalsHub'
-import { OikkaCinematic } from './proposals/OikkaCinematic'
-import { OikkaFusion } from './proposals/OikkaFusion'
 import './App.css'
 
 function App() {
@@ -14,9 +11,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/historia-y-biografias" element={<HistoriaPage />} />
-        <Route path="/propuestas" element={<ProposalsHub />} />
-        <Route path="/propuesta-a" element={<OikkaFusion />} />
-        <Route path="/propuesta-b" element={<OikkaCinematic />} />
+        <Route path="/propuestas" element={<Navigate to="/" replace />} />
+        <Route path="/propuesta-a" element={<Navigate to="/" replace />} />
+        <Route path="/propuesta-b" element={<Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

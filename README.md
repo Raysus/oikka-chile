@@ -1,21 +1,19 @@
-# OIKKA Chile — Landing
+# OIKKA Chile
 
-Landing moderno de **OIKKA Isshin Ryu Karate Chile**, hecho con React + TypeScript + Vite.
+Sitio oficial de **OIKKA Isshin Ryu Karate Chile** (React + TypeScript + Vite).
 
-Sitio de referencia: [oikkaisshinryuchile.com](https://www.oikkaisshinryuchile.com/)
-
-## Correr en local
+## Local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abre http://127.0.0.1:5173/
+Abre http://127.0.0.1:5174/
 
-## Contenido editable
+## Contenido
 
-Textos, escuelas y etapas: `src/content.ts`
+Textos, escuelas y linaje: `src/content.ts`
 
 ## Scripts
 
@@ -25,10 +23,6 @@ Textos, escuelas y etapas: `src/content.ts`
 | `npm run build` | Build producción |
 | `npm run preview` | Preview del build |
 
+## GitHub Pages
 
-## Analytics (ingresos y clase de prueba)
-
-- Cada visita cuenta como **ingreso** (`pageViews`).
-- Cada clic en «clase de prueba» (hero, header o contacto) suma `trialClassClicks`.
-- En la consola del navegador: `window.__oikkaStats()`.
-- Para Google Analytics 4, copia `.env.example` a `.env` y define `VITE_GA_MEASUREMENT_ID`.
+https://raysus.github.io/oikka-chile/
