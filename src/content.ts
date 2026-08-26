@@ -12,7 +12,7 @@ export const navLinks = [
   { label: 'Linaje', href: '/#linaje' },
   { label: 'Noticias', href: '/#noticias' },
   { label: 'Videos', href: '/#videos' },
-  { label: 'Historia', href: '/historia-y-biografias' },
+  { label: 'Historia y biografías', href: '/historia-y-biografias' },
   { label: 'Galería', href: '/#galeria' },
   { label: 'Contacto', href: '/#contacto' },
 ] as const

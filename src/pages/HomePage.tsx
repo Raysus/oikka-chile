@@ -83,7 +83,7 @@ export function HomePage() {
             </button>
           ))}
           <Link className={styles.navLink} to="/historia-y-biografias" onClick={() => setMenuOpen(false)}>
-            Historia
+            Historia y biografías
           </Link>
         </nav>
       </header>
