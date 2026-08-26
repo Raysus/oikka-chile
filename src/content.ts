@@ -61,6 +61,8 @@ export const schools = [
     lead: 'Kyoshi Carlos Alvear Torres',
     website: 'https://isshinryutemuco.cl/',
     websiteLabel: 'isshinryutemuco.cl',
+    phone: '+56 9 6758 8856',
+    phoneHref: 'tel:+56967588856',
     email: 'sensei.alvear@isshinryutemuco.cl',
     emailHref: 'mailto:sensei.alvear@isshinryutemuco.cl',
   },

@@ -11,7 +11,7 @@ export function Schools() {
             Escuelas en Chile
           </h2>
           <p className={styles.intro}>
-            Tres dojos OIKKA Isshin Ryu. Elige tu ciudad y contacta directamente a cada escuela.
+            Dojos OIKKA Isshin Ryu. Elige tu ciudad y contacta directamente a cada escuela.
           </p>
         </header>
 
@@ -25,6 +25,9 @@ export function Schools() {
                 <a href={school.website} target="_blank" rel="noreferrer">
                   {school.websiteLabel}
                 </a>
+                {'phone' in school && school.phone && school.phoneHref ? (
+                  <a href={school.phoneHref}>{school.phone}</a>
+                ) : null}
                 <a href={school.emailHref}>{school.email}</a>
               </div>
             </li>

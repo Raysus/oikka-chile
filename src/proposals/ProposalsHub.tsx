@@ -11,8 +11,8 @@ const items = [
   {
     to: '/propuesta-a',
     tag: 'Extra A',
-    title: 'Kinética con rail de progreso',
-    text: 'Scroll guiado, pilares animados, linaje interactivo y galería con Framer Motion.',
+    title: 'Fusión landing + capítulos',
+    text: 'Hero cinemático y navegación por capítulos, con las secciones reales de la propuesta principal.',
   },
   {
     to: '/propuesta-b',
