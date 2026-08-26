@@ -221,6 +221,30 @@ export function HomePage() {
                       <a href={s.emailHref}>{s.email}</a>
                     ) : null}
                   </div>
+                  {'subDojos' in s && s.subDojos ? (
+                    <ul className={styles.subDojos}>
+                      {s.subDojos.map((sub) => (
+                        <li key={sub.id} className={styles.subDojo}>
+                          {sub.badge ? <p className={styles.subBadge}>{sub.badge}</p> : null}
+                          <h4>{sub.name}</h4>
+                          <p>{sub.address}</p>
+                          <div className={styles.schoolActions}>
+                            {sub.phone && sub.phoneHref ? (
+                              <a href={sub.phoneHref}>{sub.phone}</a>
+                            ) : null}
+                            {sub.email && sub.emailHref ? (
+                              <a href={sub.emailHref}>{sub.email}</a>
+                            ) : null}
+                            {sub.whatsappHref ? (
+                              <a href={sub.whatsappHref} target="_blank" rel="noreferrer">
+                                WhatsApp
+                              </a>
+                            ) : null}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </motion.article>
               ))}
             </div>

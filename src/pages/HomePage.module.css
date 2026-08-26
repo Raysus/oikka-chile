@@ -336,6 +336,43 @@
   color: #9e1212;
 }
 
+.subDojos {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.subDojo {
+  padding: 0.85rem 0.9rem 0.95rem;
+  border-left: 3px solid #9e1212;
+  background: #f7f3ea;
+}
+
+.subBadge {
+  margin: 0 0 0.3rem;
+  color: #9e1212;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.subDojo h4 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.subDojo p {
+  margin: 0;
+  color: #5a635e;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
 .pillarTabs {
   display: flex;
   flex-wrap: wrap;
