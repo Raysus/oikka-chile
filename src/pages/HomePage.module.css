@@ -281,12 +281,13 @@
 }
 
 .insignia {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 5.75rem;
+  height: 5.75rem;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 999px;
-  padding: 0.25rem;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  image-rendering: auto;
 }
 
 .schoolTop > div > p:first-child {

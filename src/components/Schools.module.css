@@ -57,6 +57,7 @@
   height: 4.5rem;
   object-fit: contain;
   margin-bottom: 0.25rem;
+  background: transparent;
 }
 
 .city {
