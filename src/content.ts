@@ -76,8 +76,10 @@ export const schools = [
     lead: 'Sensei Cristian Jarpa Bucher',
     insignia: assetUrl('images/insignia-bushinkan.png'),
     insigniaAlt: 'Insignia Dojo Bushinkan',
-    pending: true,
-    pendingNote: 'Contacto por confirmar',
+    phone: '+56 9 9246 8396',
+    phoneHref: 'tel:+56992468396',
+    email: 'jarpacomagri@gmail.com',
+    emailHref: 'mailto:jarpacomagri@gmail.com',
   },
 ] as const
 

@@ -23,23 +23,22 @@ export function Schools() {
               <h3 className={styles.name}>{school.name}</h3>
               <p className={styles.lead}>{school.lead}</p>
               <div className={styles.actions}>
+                {'website' in school && school.website ? (
+                  <a href={school.website} target="_blank" rel="noreferrer">
+                    {school.websiteLabel}
+                  </a>
+                ) : null}
+                {'phone' in school && school.phone && school.phoneHref ? (
+                  <a href={school.phoneHref}>{school.phone}</a>
+                ) : null}
+                {'email' in school && school.email && school.emailHref ? (
+                  <a href={school.emailHref}>{school.email}</a>
+                ) : null}
                 {'pending' in school && school.pending ? (
-                  <span className={styles.pending}>{school.pendingNote}</span>
-                ) : (
-                  <>
-                    {'website' in school && school.website ? (
-                      <a href={school.website} target="_blank" rel="noreferrer">
-                        {school.websiteLabel}
-                      </a>
-                    ) : null}
-                    {'phone' in school && school.phone && school.phoneHref ? (
-                      <a href={school.phoneHref}>{school.phone}</a>
-                    ) : null}
-                    {'email' in school && school.email && school.emailHref ? (
-                      <a href={school.emailHref}>{school.email}</a>
-                    ) : null}
-                  </>
-                )}
+                  <span className={styles.pending}>
+                    {'pendingNote' in school ? String(school.pendingNote) : 'Contacto por confirmar'}
+                  </span>
+                ) : null}
               </div>
             </li>
           ))}
