@@ -18,6 +18,7 @@ export function Schools() {
         <ul className={styles.list}>
           {schools.map((school) => (
             <li key={school.id} className={styles.item}>
+              <img className={styles.insignia} src={school.insignia} alt={school.insigniaAlt} />
               <p className={styles.city}>{school.city}</p>
               <h3 className={styles.name}>{school.name}</h3>
               <p className={styles.lead}>{school.lead}</p>

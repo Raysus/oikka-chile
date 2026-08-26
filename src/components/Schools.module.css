@@ -52,6 +52,13 @@
   align-content: start;
 }
 
+.insignia {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  margin-bottom: 0.25rem;
+}
+
 .city {
   margin: 0;
   color: var(--color-accent);

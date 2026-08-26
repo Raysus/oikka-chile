@@ -13,7 +13,10 @@ export function Contact() {
           <p className={styles.text}>{contact.text}</p>
         </div>
         <div className={styles.actions}>
-          <a className={styles.primary} href={contact.email.href}>
+          <a className={styles.primary} href={contact.phone.href}>
+            {contact.phone.label}
+          </a>
+          <a className={styles.secondary} href={contact.email.href}>
             {contact.email.label}
           </a>
           <a

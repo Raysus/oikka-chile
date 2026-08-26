@@ -6,6 +6,7 @@ import {
   gallery,
   hero,
   heroSlides,
+  news,
   oikka,
   schools,
   site,
@@ -18,6 +19,7 @@ const CHAPTERS = [
   { id: 'escuelas', label: 'Escuelas' },
   { id: 'oikka', label: 'OIKKA' },
   { id: 'linaje', label: 'Linaje' },
+  { id: 'noticias', label: 'Noticias' },
   { id: 'videos', label: 'Videos' },
   { id: 'contacto', label: 'Contacto' },
 ] as const
@@ -131,9 +133,14 @@ export function HomePage() {
             <div className={styles.schoolGrid}>
               {schools.map((s) => (
                 <article key={s.id} className={styles.school}>
-                  <p>{s.city}</p>
-                  <h3>{s.name}</h3>
-                  <p className={styles.lead}>{s.lead}</p>
+                  <div className={styles.schoolTop}>
+                    <img className={styles.insignia} src={s.insignia} alt={s.insigniaAlt} />
+                    <div>
+                      <p>{s.city}</p>
+                      <h3>{s.name}</h3>
+                      <p className={styles.lead}>{s.lead}</p>
+                    </div>
+                  </div>
                   {'pending' in s && s.pending ? (
                     <p className={styles.pending}>{s.pendingNote}</p>
                   ) : (
@@ -194,6 +201,23 @@ export function HomePage() {
           </div>
         </section>
 
+        <section id="noticias" className={`${styles.chapter} ${styles.dark}`}>
+          <div className={styles.inner}>
+            <p className={styles.kicker}>Actualidad</p>
+            <h2>{news.title}</h2>
+            <p className={styles.big}>{news.intro}</p>
+            <div className={styles.newsGrid}>
+              {news.items.map((item) => (
+                <article key={item.id} className={styles.newsCard}>
+                  <p className={styles.newsDate}>{item.date}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="videos" className={`${styles.chapter} ${styles.warm}`}>
           <div className={styles.inner}>
             <p className={styles.kicker}>Angi Uezu</p>
@@ -224,7 +248,10 @@ export function HomePage() {
               ))}
             </div>
             <div className={styles.contactActions}>
-              <a className={styles.cta} href={contact.email.href}>
+              <a className={styles.cta} href={contact.phone.href}>
+                {contact.phone.label}
+              </a>
+              <a className={styles.secondary} href={contact.email.href}>
                 {contact.email.label}
               </a>
               <a

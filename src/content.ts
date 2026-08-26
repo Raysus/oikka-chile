@@ -10,6 +10,7 @@ export const navLinks = [
   { label: 'Escuelas', href: '/#escuelas' },
   { label: 'OIKKA', href: '/#oikka' },
   { label: 'Linaje', href: '/#linaje' },
+  { label: 'Noticias', href: '/#noticias' },
   { label: 'Videos', href: '/#videos' },
   { label: 'Historia', href: '/historia-y-biografias' },
   { label: 'Galería', href: '/#galeria' },
@@ -59,18 +60,22 @@ export const schools = [
     name: 'Isshin Akira Kan',
     city: 'Temuco',
     lead: 'Kyoshi Carlos Alvear Torres',
+    insignia: assetUrl('images/insignia-isshin-akira.png'),
+    insigniaAlt: 'Insignia Dojo Isshin Akira',
     website: 'https://isshinryutemuco.cl/',
     websiteLabel: 'isshinryutemuco.cl',
-    phone: '+56 9 6758 8856',
-    phoneHref: 'tel:+56967588856',
-    email: 'sensei.alvear@isshinryutemuco.cl',
-    emailHref: 'mailto:sensei.alvear@isshinryutemuco.cl',
+    phone: '+56 9 6758 8846',
+    phoneHref: 'tel:+56967588846',
+    email: 'senseialvear@gmail.com',
+    emailHref: 'mailto:senseialvear@gmail.com',
   },
   {
     id: 'los-angeles',
     name: 'Dojo Bushin Kan',
     city: 'Los Ángeles',
     lead: 'Sensei Cristian Jarpa Bucher',
+    insignia: assetUrl('images/insignia-bushinkan.png'),
+    insigniaAlt: 'Insignia Dojo Bushinkan',
     pending: true,
     pendingNote: 'Contacto por confirmar',
   },
@@ -284,14 +289,43 @@ export const gallery = [
 export const contact = {
   title: 'Contacto',
   text: 'Escríbenos para conocer la escuela más cercana o resolver dudas sobre OIKKA Chile.',
+  phone: {
+    label: '+56 9 6758 8846',
+    href: 'tel:+56967588846',
+  },
   email: {
-    label: 'contacto@isshinryutemuco.cl',
-    href: 'mailto:contacto@isshinryutemuco.cl',
+    label: 'senseialvear@gmail.com',
+    href: 'mailto:senseialvear@gmail.com',
   },
   facebook: {
     label: 'Facebook OIKKA',
     href: 'https://www.facebook.com/Okinawa-Isshinryu-Karate-Kobudo-Association-OIKKA-181412761882478/',
   },
+}
+
+export const news = {
+  title: 'Noticias',
+  intro: 'Novedades de la asociación y de los dojos afiliados a OIKKA en Chile.',
+  items: [
+    {
+      id: 'bienvenida-sitio',
+      date: '2026-08',
+      title: 'Nuevo sitio oficial de OIKKA Chile',
+      body: 'Presentamos el espacio digital de la asociación: escuelas, linaje, historia y contacto en un solo lugar.',
+    },
+    {
+      id: 'linaje-vivo',
+      date: '2026-08',
+      title: 'Árbol del linaje Isshin Ryu',
+      body: 'Explora el mapa interactivo del linaje, desde Okinawa hasta la familia OIKKA en Chile.',
+    },
+    {
+      id: 'proxima-actividad',
+      date: 'Próximamente',
+      title: 'Actividades y avisos de dojos',
+      body: 'Pronto publicaremos aquí calendarios de seminarios, exámenes y encuentros entre escuelas.',
+    },
+  ],
 }
 
 export const footer = {
