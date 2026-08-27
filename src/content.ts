@@ -74,7 +74,7 @@ export const schools = [
     name: 'Vanguardia Center · Local 114',
     city: 'Temuco',
     badge: 'Sede',
-    lead: 'Sede de Isshin Akira Kan',
+    lead: 'Sensei Alexis Alvear',
     insignia: assetUrl('images/insignia-isshin-akira.png'),
     insigniaAlt: 'Insignia Dojo Isshin Akira',
     phone: '+56 9 5070 7183',
