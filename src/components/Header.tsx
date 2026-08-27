@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { navLinks, site } from '../content'
 import { withBase } from '../lib/paths'
+import { AccountMenu } from './AccountMenu'
 import styles from './Header.module.css'
 
 export function Header() {
@@ -30,43 +31,47 @@ export function Header() {
           <span className={styles.brandSub}>Isshin Ryu · Chile</span>
         </Link>
 
-        <button
-          type="button"
-          className={styles.menuButton}
-          aria-expanded={open}
-          aria-controls="nav-principal"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? 'Cerrar' : 'Menú'}
-        </button>
+        <div className={styles.actions}>
+          <nav
+            id="nav-principal"
+            className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav}
+            aria-label="Principal"
+          >
+            {navLinks.map((link) =>
+              link.href.startsWith('/#') || link.href.startsWith('#') ? (
+                <a
+                  key={link.href}
+                  href={withBase(link.href)}
+                  className={styles.link}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={styles.link}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
+          </nav>
 
-        <nav
-          id="nav-principal"
-          className={open ? `${styles.nav} ${styles.navOpen}` : styles.nav}
-          aria-label="Principal"
-        >
-          {navLinks.map((link) =>
-            link.href.startsWith('/#') || link.href.startsWith('#') ? (
-              <a
-                key={link.href}
-                href={withBase(link.href)}
-                className={styles.link}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={styles.link}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ),
-          )}
-        </nav>
+          <AccountMenu tone="light" />
+
+          <button
+            type="button"
+            className={styles.menuButton}
+            aria-expanded={open}
+            aria-controls="nav-principal"
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? 'Cerrar' : 'Menú'}
+          </button>
+        </div>
       </div>
     </header>
   )

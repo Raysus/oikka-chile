@@ -44,6 +44,13 @@
   text-transform: uppercase;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem 1.1rem;
+  min-width: 0;
+}
+
 .menuButton {
   display: none;
   font: inherit;

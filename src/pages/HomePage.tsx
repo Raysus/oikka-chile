@@ -19,6 +19,7 @@ import {
   site,
 } from '../content'
 import { LineageGraph } from '../components/Lineage'
+import { AccountMenu } from '../components/AccountMenu'
 import styles from './HomePage.module.css'
 
 const sections = [
@@ -84,36 +85,40 @@ export function HomePage() {
           {site.shortName}
         </button>
 
-        <button
-          type="button"
-          className={styles.menuBtn}
-          aria-expanded={menuOpen}
-          aria-controls="nav-kinetica"
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? 'Cerrar' : 'Menú'}
-        </button>
-
-        <nav
-          id="nav-kinetica"
-          className={menuOpen ? `${styles.nav} ${styles.navOpen}` : styles.nav}
-          aria-label="Principal"
-        >
-          {sections
-            .filter((s) => s.id !== 'inicio')
-            .map((s) => (
-              <button key={s.id} type="button" className={styles.navLink} onClick={() => go(s.id)}>
-                {s.label}
-              </button>
-            ))}
-          <Link
-            className={styles.navLink}
-            to="/historia-y-biografias"
-            onClick={() => setMenuOpen(false)}
+        <div className={styles.barEnd}>
+          <nav
+            id="nav-kinetica"
+            className={menuOpen ? `${styles.nav} ${styles.navOpen}` : styles.nav}
+            aria-label="Principal"
           >
-            Historia y biografías
-          </Link>
-        </nav>
+            {sections
+              .filter((s) => s.id !== 'inicio')
+              .map((s) => (
+                <button key={s.id} type="button" className={styles.navLink} onClick={() => go(s.id)}>
+                  {s.label}
+                </button>
+              ))}
+            <Link
+              className={styles.navLink}
+              to="/historia-y-biografias"
+              onClick={() => setMenuOpen(false)}
+            >
+              Historia y biografías
+            </Link>
+          </nav>
+
+          <AccountMenu tone="dark" />
+
+          <button
+            type="button"
+            className={styles.menuBtn}
+            aria-expanded={menuOpen}
+            aria-controls="nav-kinetica"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? 'Cerrar' : 'Menú'}
+          </button>
+        </div>
       </header>
 
       <aside className={styles.rail} aria-label="Secciones">
