@@ -68,11 +68,11 @@ export const schools = [
     phoneHref: 'tel:+56967588846',
     email: 'senseialvear@gmail.com',
     emailHref: 'mailto:senseialvear@gmail.com',
-    subDojos: [
+    sedes: [
       {
         id: 'vanguardia',
         name: 'Vanguardia Center · Local 114',
-        badge: 'Subdojo',
+        badge: 'Sede',
         address: 'Vanguardia Center · Local 114, Temuco',
         phone: '+56 9 5070 7183',
         phoneHref: 'tel:+56950707183',

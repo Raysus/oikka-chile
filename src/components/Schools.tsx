@@ -1,4 +1,5 @@
 import { schools } from '../content'
+import { SchoolSedes } from './SchoolSedes'
 import styles from './Schools.module.css'
 
 export function Schools() {
@@ -40,25 +41,8 @@ export function Schools() {
                   </span>
                 ) : null}
               </div>
-              {'subDojos' in school && school.subDojos ? (
-                <ul className={styles.subDojos}>
-                  {school.subDojos.map((sub) => (
-                    <li key={sub.id} className={styles.subDojo}>
-                      {sub.badge ? <p className={styles.subBadge}>{sub.badge}</p> : null}
-                      <h4 className={styles.subName}>{sub.name}</h4>
-                      <p className={styles.subAddress}>{sub.address}</p>
-                      <div className={styles.actions}>
-                        {sub.phone && sub.phoneHref ? <a href={sub.phoneHref}>{sub.phone}</a> : null}
-                        {sub.email && sub.emailHref ? <a href={sub.emailHref}>{sub.email}</a> : null}
-                        {sub.whatsappHref ? (
-                          <a href={sub.whatsappHref} target="_blank" rel="noreferrer">
-                            WhatsApp
-                          </a>
-                        ) : null}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+              {'sedes' in school && school.sedes ? (
+                <SchoolSedes sedes={school.sedes} city={school.city} />
               ) : null}
             </li>
           ))}
