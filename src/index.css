@@ -8,8 +8,8 @@
   --color-text: #101412;
   --color-muted: #5a635e;
   --color-line: #cfd6d2;
-  --color-accent: #9e1212;
-  --color-accent-hover: #7d0e0e;
+  --color-accent: #b89620;
+  --color-accent-hover: #947816;
   --color-hero-text: #f4f6f5;
   --color-hero-muted: #c5ccc8;
   --color-pastel-yellow: #f0d978;
@@ -37,7 +37,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   background:
-    radial-gradient(circle at 0% 0%, rgba(158, 18, 18, 0.07), transparent 30%),
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 30%),
     radial-gradient(circle at 100% 8%, color-mix(in srgb, var(--color-pastel-yellow) 22%, transparent), transparent 34%),
     linear-gradient(180deg, #faf6e8 0%, var(--color-bg) 18%, var(--color-bg) 100%);
   color: var(--color-text);

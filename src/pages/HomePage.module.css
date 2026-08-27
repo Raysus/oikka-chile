@@ -10,7 +10,7 @@
   top: 0;
   z-index: 100;
   padding: 0.65rem 1rem;
-  background: #9e1212;
+  background: var(--color-accent);
   color: #fff;
 }
 
@@ -165,7 +165,7 @@
 }
 
 .kickerDark {
-  color: #9e1212;
+  color: var(--color-accent);
 }
 
 .kickerLight {
@@ -237,7 +237,7 @@
 }
 
 .primary {
-  background: #9e1212;
+  background: var(--color-accent);
   color: #fff;
 }
 
@@ -300,7 +300,7 @@
 .school {
   background: #fff;
   padding: 1.25rem 1.15rem;
-  border-top: 3px solid #9e1212;
+  border-top: 3px solid var(--color-accent);
 }
 
 .insignia {
@@ -312,7 +312,7 @@
 
 .school p:nth-of-type(1) {
   margin: 0 0 0.3rem;
-  color: #9e1212;
+  color: var(--color-accent);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -333,7 +333,7 @@
 
 .schoolActions a {
   font-weight: 700;
-  color: #9e1212;
+  color: var(--color-accent);
 }
 
 .subDojos {
@@ -346,13 +346,13 @@
 
 .subDojo {
   padding: 0.85rem 0.9rem 0.95rem;
-  border-left: 3px solid #9e1212;
+  border-left: 3px solid var(--color-accent);
   background: #f7f3ea;
 }
 
 .subBadge {
   margin: 0 0 0.3rem;
-  color: #9e1212;
+  color: var(--color-accent);
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -403,7 +403,7 @@
   right: 0;
   bottom: -1px;
   height: 3px;
-  background: #9e1212;
+  background: var(--color-accent);
 }
 
 .pillarText {
@@ -425,7 +425,7 @@
 }
 
 .world a {
-  color: #9e1212;
+  color: var(--color-accent);
   font-weight: 700;
 }
 
@@ -470,7 +470,7 @@
 
 .newsCard {
   padding: 1.1rem 1.15rem 1.2rem;
-  border-top: 3px solid #9e1212;
+  border-top: 3px solid var(--color-accent);
   background: #fff;
 }
 
