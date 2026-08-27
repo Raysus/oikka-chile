@@ -1,19 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;500;600;700&display=swap');
 
 :root {
-  --color-bg: #f1f3f2;
+  /* Paleta insignia Isshin Akira: rojo · negro · blanco */
+  --color-bg: #f4f4f2;
   --color-surface: #ffffff;
-  --color-surface-alt: #e4e8e6;
-  --color-ink: #101412;
-  --color-text: #101412;
-  --color-muted: #5a635e;
-  --color-line: #cfd6d2;
-  --color-accent: #b89620;
-  --color-accent-hover: #947816;
-  --color-hero-text: #f4f6f5;
-  --color-hero-muted: #c5ccc8;
-  --color-pastel-yellow: #f0d978;
-  --color-pastel-yellow-soft: #faf3d0;
+  --color-surface-alt: #ececea;
+  --color-ink: #101010;
+  --color-text: #101010;
+  --color-muted: #5c5c5c;
+  --color-line: #d4d4d0;
+  --color-accent: #c01030;
+  --color-accent-hover: #9a0c26;
+  --color-hero-text: #f7f7f5;
+  --color-hero-muted: #c8c8c4;
+  /* Antes amarillo OIKKA; ahora crema neutra solo para atmósfera, no para textos */
+  --color-pastel-yellow: #e8e4dc;
+  --color-pastel-yellow-soft: #f7f5f0;
+  --color-mark: #f7f7f5;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Sora', sans-serif;
   --header-height: 4.25rem;
@@ -37,9 +40,9 @@ body {
   margin: 0;
   font-family: var(--font-body);
   background:
-    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 30%),
-    radial-gradient(circle at 100% 8%, color-mix(in srgb, var(--color-pastel-yellow) 22%, transparent), transparent 34%),
-    linear-gradient(180deg, #faf6e8 0%, var(--color-bg) 18%, var(--color-bg) 100%);
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 32%),
+    radial-gradient(circle at 100% 8%, color-mix(in srgb, var(--color-ink) 4%, transparent), transparent 34%),
+    linear-gradient(180deg, var(--color-pastel-yellow-soft) 0%, var(--color-bg) 18%, var(--color-bg) 100%);
   color: var(--color-text);
   line-height: 1.6;
   text-rendering: optimizeLegibility;
