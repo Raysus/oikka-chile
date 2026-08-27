@@ -72,15 +72,15 @@
 }
 
 .cta {
-  background: var(--color-accent);
-  color: white;
+  background: var(--color-button);
+  color: var(--color-button-text);
   padding: 0.55rem 0.95rem;
   font-weight: 700;
   font-size: 0.88rem;
 }
 
 .cta:hover {
-  background: var(--color-accent-hover);
+  background: var(--color-button-hover);
 }
 
 @media (max-width: 768px) {

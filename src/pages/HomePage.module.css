@@ -72,7 +72,7 @@
 }
 
 .navLink:hover {
-  color: var(--color-mark);
+  color: #f0d978;
 }
 
 .rail {
@@ -93,7 +93,7 @@
   top: 0;
   width: 2px;
   height: 100%;
-  background: var(--color-accent);
+  background: #f0d978;
   transform-origin: top;
 }
 
@@ -161,7 +161,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-mark);
+  color: #f0d978;
 }
 
 .kickerDark {
@@ -169,7 +169,7 @@
 }
 
 .kickerLight {
-  color: var(--color-mark);
+  color: #f0d978;
 }
 
 .hero h1 {
@@ -190,15 +190,15 @@
 }
 
 .slide {
-  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-  border-left: 3px solid var(--color-accent);
+  background: rgba(240, 217, 120, 0.1);
+  border-left: 3px solid #f0d978;
   padding: 1rem 1.1rem 1.15rem;
   min-height: 8.5rem;
 }
 
 .slide p:first-child {
   margin: 0 0 0.35rem;
-  color: var(--color-mark);
+  color: #f0d978;
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -237,8 +237,12 @@
 }
 
 .primary {
-  background: var(--color-accent);
-  color: #fff;
+  background: var(--color-button);
+  color: var(--color-button-text);
+}
+
+.primary:hover {
+  background: var(--color-button-hover);
 }
 
 .ghost {
@@ -260,7 +264,7 @@
 }
 
 .warm {
-  background: linear-gradient(180deg, var(--color-pastel-yellow-soft), var(--color-bg));
+  background: linear-gradient(180deg, #faf6e8, #f1f3f2);
 }
 
 .dark {
@@ -269,7 +273,7 @@
 }
 
 .finale {
-  background: linear-gradient(180deg, var(--color-bg), var(--color-pastel-yellow-soft));
+  background: linear-gradient(180deg, #f1f3f2, #ebe4d2);
 }
 
 .sectionInner,
@@ -439,7 +443,7 @@
 }
 
 .historyLink {
-  color: var(--color-mark);
+  color: #f0d978;
   font-weight: 700;
 }
 

@@ -120,8 +120,8 @@
 }
 
 .cta {
-  background: var(--color-accent);
-  color: white;
+  background: var(--color-button);
+  color: var(--color-button-text);
 }
 
 @media (max-width: 860px) {

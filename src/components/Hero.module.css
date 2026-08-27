@@ -70,7 +70,7 @@
 
 .slideKicker {
   margin: 0 0 0.35rem;
-  color: var(--color-mark);
+  color: var(--color-pastel-yellow);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -115,7 +115,7 @@
 }
 
 .dotActive {
-  background: var(--color-accent);
+  background: var(--color-pastel-yellow);
   transform: scale(1.25);
 }
 
@@ -136,12 +136,12 @@
 }
 
 .cta {
-  background: var(--color-accent);
-  color: white;
+  background: var(--color-button);
+  color: var(--color-button-text);
 }
 
 .cta:hover {
-  background: var(--color-accent-hover);
+  background: var(--color-button-hover);
 }
 
 .secondary {

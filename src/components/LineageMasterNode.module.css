@@ -3,16 +3,16 @@
   min-width: 17.5rem;
   max-width: 20.5rem;
   padding: 0.75rem 0.85rem 0.8rem;
-  border: 1px solid var(--color-line);
-  background: var(--color-surface);
-  box-shadow: 0 14px 36px rgba(16, 16, 16, 0.08);
+  border: 1px solid #e4d9b0;
+  background: #fffdf6;
+  box-shadow: 0 14px 36px rgba(40, 30, 10, 0.1);
   cursor: pointer;
   text-align: left;
 }
 
 .highlight {
-  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
-  background: color-mix(in srgb, var(--color-accent) 6%, white);
+  border-color: color-mix(in srgb, var(--color-pastel-yellow) 70%, #c4a83a);
+  background: linear-gradient(180deg, #fff9e0 0%, #fffdf6 100%);
 }
 
 .selected {
@@ -34,7 +34,7 @@
 
 .selected .avatar {
   background: #2a2418;
-  border-color: var(--color-accent);
+  border-color: #f0d978;
 }
 
 .row {
@@ -50,14 +50,14 @@
   height: 5.1rem;
   object-fit: cover;
   object-position: center top;
-  border: 1px solid var(--color-line);
-  background: var(--color-surface-alt);
+  border: 1px solid #e4d9b0;
+  background: #efe6c4;
 }
 
 .avatar {
   display: grid;
   place-items: center;
-  color: var(--color-muted);
+  color: #5a4a18;
   font-family: var(--font-display);
   font-size: 1.15rem;
   letter-spacing: 0.06em;
@@ -87,8 +87,8 @@
 .year {
   display: inline-flex;
   padding: 0.12rem 0.4rem;
-  background: var(--color-accent);
-  color: #fff;
+  background: var(--color-pastel-yellow);
+  color: #3a3208;
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -123,6 +123,6 @@
 .handle {
   width: 10px !important;
   height: 10px !important;
-  border: 2px solid var(--color-accent) !important;
+  border: 2px solid var(--color-pastel-yellow) !important;
   background: #15130f !important;
 }

@@ -58,18 +58,18 @@ function buildEdges(activeId: string): Edge[] {
       label: edge.label,
       animated: hot,
       style: {
-        stroke: hot ? '#c01030' : '#b0b0aa',
+        stroke: hot ? '#b89620' : '#d4c48a',
         strokeWidth: hot ? 2.8 : 1.8,
       },
       labelStyle: {
-        fill: hot ? '#c01030' : '#5c5c5c',
+        fill: hot ? '#b89620' : '#8a7420',
         fontWeight: 700,
         fontSize: 12,
       },
       labelBgStyle: { fill: '#fff9e8', fillOpacity: 0.92 },
       markerEnd: {
         type: MarkerType.ArrowClosed,
-        color: hot ? '#c01030' : '#b0b0aa',
+        color: hot ? '#b89620' : '#d4c48a',
         width: 18,
         height: 18,
       },
@@ -164,7 +164,7 @@ function LineageCanvas({ variant = 'light' }: { variant?: 'light' | 'dark' }) {
             pannable
             zoomable
             maskColor={miniMask}
-            nodeColor={(n) => (n.id === activeId ? '#c01030' : '#e8e4dc')}
+            nodeColor={(n) => (n.id === activeId ? '#b89620' : '#f0d978')}
             style={{ background: bgColor }}
           />
         </ReactFlow>

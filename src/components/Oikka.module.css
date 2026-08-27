@@ -1,9 +1,9 @@
 .section {
   padding: var(--section-y) 0;
   background:
-    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--color-accent) 8%, transparent), transparent 42%),
-    linear-gradient(180deg, var(--color-pastel-yellow-soft) 0%, var(--color-surface) 55%);
-  border-top: 1px solid var(--color-line);
+    radial-gradient(circle at 12% 0%, rgba(245, 220, 130, 0.45), transparent 42%),
+    linear-gradient(180deg, var(--color-pastel-yellow-soft) 0%, #fff9e8 45%, var(--color-surface) 100%);
+  border-top: 1px solid color-mix(in srgb, var(--color-pastel-yellow) 55%, var(--color-line));
 }
 
 .inner {
@@ -51,13 +51,13 @@
 
 .valueCard {
   padding: 1.1rem 1rem;
-  background: color-mix(in srgb, var(--color-accent) 6%, white);
+  background: color-mix(in srgb, var(--color-pastel-yellow) 42%, white);
   border-left: 3px solid var(--color-accent);
 }
 
 .valueCardWide {
   grid-column: 1 / -1;
-  background: color-mix(in srgb, var(--color-accent) 9%, white);
+  background: color-mix(in srgb, var(--color-pastel-yellow) 58%, white);
 }
 
 .valueTitle {
@@ -78,12 +78,12 @@
   background: #121614;
   color: #f2f4f3;
   padding: 1.5rem 1.25rem;
-  border-top: 3px solid var(--color-accent);
+  border-top: 3px solid var(--color-pastel-yellow);
 }
 
 .asideLabel {
   margin: 0 0 0.5rem;
-  color: var(--color-mark);
+  color: var(--color-pastel-yellow);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
