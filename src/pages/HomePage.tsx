@@ -19,7 +19,6 @@ import {
   site,
 } from '../content'
 import { LineageGraph } from '../components/Lineage'
-import { SchoolSedes } from '../components/SchoolSedes'
 import styles from './HomePage.module.css'
 
 const sections = [
@@ -206,9 +205,10 @@ export function HomePage() {
                   whileHover={{ y: -8 }}
                 >
                   <img className={styles.insignia} src={s.insignia} alt={s.insigniaAlt} />
-                  <p>{s.city}</p>
+                  <p className={styles.schoolCity}>{s.city}</p>
+                  {'badge' in s && s.badge ? <p className={styles.schoolBadge}>{s.badge}</p> : null}
                   <h3>{s.name}</h3>
-                  <p>{s.lead}</p>
+                  <p className={styles.schoolLead}>{s.lead}</p>
                   <div className={styles.schoolActions}>
                     {'website' in s && s.website ? (
                       <a href={s.website} target="_blank" rel="noreferrer">
@@ -221,8 +221,12 @@ export function HomePage() {
                     {'email' in s && s.email && s.emailHref ? (
                       <a href={s.emailHref}>{s.email}</a>
                     ) : null}
+                    {'whatsappHref' in s && s.whatsappHref ? (
+                      <a href={s.whatsappHref} target="_blank" rel="noreferrer">
+                        WhatsApp
+                      </a>
+                    ) : null}
                   </div>
-                  {'sedes' in s && s.sedes ? <SchoolSedes sedes={s.sedes} city={s.city} /> : null}
                 </motion.article>
               ))}
             </div>

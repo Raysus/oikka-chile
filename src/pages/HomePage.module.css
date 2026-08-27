@@ -297,6 +297,7 @@
 
 .schoolTrack {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 1rem;
   margin-top: 1.5rem;
 }
@@ -314,7 +315,7 @@
   margin-bottom: 0.75rem;
 }
 
-.school p:nth-of-type(1) {
+.schoolCity {
   margin: 0 0 0.3rem;
   color: var(--color-accent);
   font-size: 0.75rem;
@@ -323,9 +324,27 @@
   text-transform: uppercase;
 }
 
+.schoolBadge {
+  margin: 0 0 0.35rem;
+  color: var(--color-accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .school h3 {
   margin: 0 0 0.4rem;
-  font-size: 1.8rem;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+.schoolLead {
+  margin: 0;
+  color: #5a635e;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .schoolActions {
@@ -530,7 +549,7 @@
   }
 
   .schoolTrack {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .videoGrid {

@@ -1,5 +1,4 @@
 import { schools } from '../content'
-import { SchoolSedes } from './SchoolSedes'
 import styles from './Schools.module.css'
 
 export function Schools() {
@@ -21,6 +20,9 @@ export function Schools() {
             <li key={school.id} className={styles.item}>
               <img className={styles.insignia} src={school.insignia} alt={school.insigniaAlt} />
               <p className={styles.city}>{school.city}</p>
+              {'badge' in school && school.badge ? (
+                <p className={styles.badge}>{school.badge}</p>
+              ) : null}
               <h3 className={styles.name}>{school.name}</h3>
               <p className={styles.lead}>{school.lead}</p>
               <div className={styles.actions}>
@@ -35,15 +37,17 @@ export function Schools() {
                 {'email' in school && school.email && school.emailHref ? (
                   <a href={school.emailHref}>{school.email}</a>
                 ) : null}
+                {'whatsappHref' in school && school.whatsappHref ? (
+                  <a href={school.whatsappHref} target="_blank" rel="noreferrer">
+                    WhatsApp
+                  </a>
+                ) : null}
                 {'pending' in school && school.pending ? (
                   <span className={styles.pending}>
                     {'pendingNote' in school ? String(school.pendingNote) : 'Contacto por confirmar'}
                   </span>
                 ) : null}
               </div>
-              {'sedes' in school && school.sedes ? (
-                <SchoolSedes sedes={school.sedes} city={school.city} />
-              ) : null}
             </li>
           ))}
         </ul>
