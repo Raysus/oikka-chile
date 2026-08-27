@@ -12,22 +12,25 @@ export function Contact() {
           </h2>
           <p className={styles.text}>{contact.text}</p>
         </div>
-        <div className={styles.actions}>
-          <a className={styles.primary} href={contact.phone.href}>
-            {contact.phone.label}
-          </a>
-          <a className={styles.secondary} href={contact.email.href}>
-            {contact.email.label}
-          </a>
-          <a
-            className={styles.secondary}
-            href={contact.facebook.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {contact.facebook.label}
-          </a>
-        </div>
+          <div className={styles.actions}>
+            <a className={styles.primary} href={contact.whatsapp.href} target="_blank" rel="noreferrer">
+              {contact.whatsapp.label}
+            </a>
+            <a className={styles.secondary} href={contact.phone.href}>
+              {contact.phone.label}
+            </a>
+            <a className={styles.secondary} href={contact.email.href}>
+              {contact.email.label}
+            </a>
+            <a
+              className={styles.secondary}
+              href={contact.facebook.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {contact.facebook.label}
+            </a>
+          </div>
       </div>
     </section>
   )

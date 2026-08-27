@@ -18,6 +18,9 @@ export function Schools() {
         <ul className={styles.list}>
           {schools.map((school) => (
             <li key={school.id} className={styles.item}>
+              {'photo' in school && school.photo ? (
+                <img className={styles.photo} src={school.photo} alt={school.photoAlt} />
+              ) : null}
               <img className={styles.insignia} src={school.insignia} alt={school.insigniaAlt} />
               <p className={styles.city}>{school.city}</p>
               {'badge' in school && school.badge ? (

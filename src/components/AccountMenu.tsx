@@ -6,6 +6,8 @@ import styles from './AccountMenu.module.css'
 type AccountMenuProps = {
   /** dark = kinetic home bar; light = shared Header */
   tone?: 'dark' | 'light'
+  /** Quieter login control for marketing headers */
+  compact?: boolean
 }
 
 function initials(name: string) {
@@ -49,7 +51,7 @@ function IconLogout() {
   )
 }
 
-export function AccountMenu({ tone = 'dark' }: AccountMenuProps) {
+export function AccountMenu({ tone = 'dark', compact = false }: AccountMenuProps) {
   const { user, login, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
@@ -115,7 +117,10 @@ export function AccountMenu({ tone = 'dark' }: AccountMenuProps) {
   }
 
   return (
-    <div className={`${styles.root} ${tone === 'light' ? styles.light : styles.dark}`} ref={rootRef}>
+    <div
+      className={`${styles.root} ${tone === 'light' ? styles.light : styles.dark}${compact ? ` ${styles.compact}` : ''}`}
+      ref={rootRef}
+    >
       {user ? (
         <>
           <button

@@ -14,13 +14,21 @@
 }
 
 .dark .loginBtn {
-  background: var(--color-button, #15120c);
-  color: var(--color-button-text, #f7f3e4);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.88);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .dark .loginBtn:hover {
-  background: var(--color-button-hover, #2a2418);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.compact.dark .loginBtn {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .light .loginBtn {
