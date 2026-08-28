@@ -49,6 +49,18 @@
   font-size: 1.35rem;
   letter-spacing: 0.04em;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.brandLogo {
+  width: 2.35rem;
+  height: 2.35rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 50%;
 }
 
 .menuBtn {
@@ -511,6 +523,24 @@
   display: grid;
   gap: 2rem;
   align-items: start;
+}
+
+.oikkaHead {
+  display: flex;
+  align-items: center;
+  gap: 1rem 1.15rem;
+}
+
+.oikkaLogo {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.oikkaHead h2 {
+  margin: 0;
 }
 
 .oikkaPortrait {

@@ -15,6 +15,21 @@
   align-items: end;
 }
 
+.brandBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.logo {
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
 .brand {
   margin: 0 0 0.35rem;
   font-family: var(--font-display);

@@ -103,7 +103,8 @@ export function HomePage() {
 
       <header className={styles.bar}>
         <button type="button" className={styles.brand} onClick={() => go('inicio')}>
-          {site.shortName}
+          <img className={styles.brandLogo} src={site.logo} alt="" width={40} height={40} />
+          <span>{site.shortName}</span>
         </button>
 
         <div className={styles.barEnd}>
@@ -312,8 +313,13 @@ export function HomePage() {
           <div className={styles.sectionInner}>
             <div className={styles.oikkaLayout}>
               <div>
-                <p className={styles.kickerDark}>{oikka.title}</p>
-                <h2>{oikka.fullName}</h2>
+                <div className={styles.oikkaHead}>
+                  <img className={styles.oikkaLogo} src={site.logo} alt={site.logoAlt} width={88} height={88} />
+                  <div>
+                    <p className={styles.kickerDark}>{oikka.title}</p>
+                    <h2>{oikka.fullName}</h2>
+                  </div>
+                </div>
                 <div className={styles.pillarTabs}>
                   {pillars.map((p, i) => (
                     <button

@@ -4,6 +4,8 @@ export const site = {
   name: 'OIKKA Isshin Ryu Karate Chile',
   shortName: 'OIKKA Chile',
   tagline: 'Okinawa Isshin Ryu Karate Kobudo Association en Chile',
+  logo: assetUrl('images/logo-oikka.png'),
+  logoAlt: 'Logo OIKKA — Okinawa Isshin Ryu Karate Kobu-Do Association',
 }
 
 export const navLinks = [
