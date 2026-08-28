@@ -33,9 +33,11 @@ const FOCUS = new Set([
   'uezu',
   'chase',
   'alvear',
+  'alexis',
+  'jarpa',
 ])
 
-const QUICK = ['shimabuku', 'uezu', 'chase', 'alvear', 'kiyan', 'miyagi'] as const
+const QUICK = ['shimabuku', 'uezu', 'chase', 'alvear', 'alexis', 'jarpa'] as const
 
 const nodeTypes = { master: LineageMasterNode }
 
