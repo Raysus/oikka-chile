@@ -83,23 +83,34 @@
 }
 
 .rail {
+  --rail-width: 8.75rem;
   position: fixed;
-  left: 1rem;
+  left: 0.85rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 25;
   display: none;
   flex-direction: column;
   gap: 0.55rem;
-  padding-left: 0.85rem;
+  padding: 0.85rem 0.65rem 0.85rem 0.85rem;
+  max-width: var(--rail-width);
+  border-radius: 0.35rem;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 8, 0.55) 0%,
+    rgba(10, 10, 8, 0.2) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .railFill {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 0.85rem;
+  top: 0.85rem;
+  bottom: 0.85rem;
   width: 2px;
-  height: 100%;
+  height: auto;
   background: #f0d978;
   transform-origin: top;
 }
@@ -111,15 +122,17 @@
   gap: 0.55rem;
   border: 0;
   background: transparent;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.55);
   font: inherit;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: left;
   cursor: pointer;
   padding: 0.2rem 0;
   transition: color 0.25s var(--ease);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
+  pointer-events: auto;
 }
 
 .railDot {
@@ -152,6 +165,7 @@
   align-items: end;
   padding: 2.5rem var(--space) 2.75rem;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .heroMedia {
@@ -166,19 +180,20 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    115deg,
-    rgba(10, 8, 5, 0.92) 0%,
-    rgba(10, 8, 5, 0.55) 48%,
-    rgba(10, 8, 5, 0.78) 100%
+    105deg,
+    rgba(10, 8, 5, 0.72) 0%,
+    rgba(10, 8, 5, 0.42) 42%,
+    rgba(10, 8, 5, 0.72) 100%
   );
 }
 
 .heroCopy {
   position: relative;
   z-index: 1;
-  width: min(42rem, 100%);
+  width: min(36rem, 100%);
   max-width: 100%;
   box-sizing: border-box;
+  container-type: inline-size;
 }
 
 .kickerDark,
@@ -198,11 +213,21 @@
   color: #f0d978;
 }
 
-.hero h1 {
+.heroBrand {
   margin: 0;
-  font-size: clamp(3.2rem, 11vw, 6.5rem);
   color: #fff;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-size: clamp(2.85rem, 11vw, 4.75rem);
+  font-size: clamp(3rem, 18cqi, 5.75rem);
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+}
+
+.heroBrand span {
+  display: block;
 }
 
 .heroSub {
@@ -723,7 +748,20 @@
   }
 
   .scroller {
-    padding-left: 7.5rem;
+    padding-left: 0;
+  }
+
+  .hero {
+    padding-left: calc(8.75rem + var(--space));
+    padding-right: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .section {
+    padding-left: calc(8.75rem + var(--space));
+  }
+
+  .heroBrand {
+    font-size: clamp(3.4rem, 7.2vw, 5.6rem);
   }
 
   .schoolTrack {

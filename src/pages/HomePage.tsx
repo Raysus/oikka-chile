@@ -170,11 +170,13 @@ export function HomePage() {
           <div className={styles.heroShade} />
           <div className={styles.heroCopy}>
             <motion.h1
+              className={styles.heroBrand}
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              {hero.brand}
+              <span>OIKKA</span>
+              <span>Chile</span>
             </motion.h1>
             <motion.p
               className={styles.heroSub}
