@@ -17,7 +17,9 @@ export type MasterNodeData = {
 export type MasterFlowNode = Node<MasterNodeData, 'master'>
 
 function initials(name: string) {
-  const clean = name.replace(/^Maestro\s+|^Taishi\s+/i, '').trim()
+  const clean = name
+    .replace(/^(Maestro|Hanshi|Kyoshi|Renshi|Sensei|Taishi)\s+/i, '')
+    .trim()
   const parts = clean.split(/\s+/).filter(Boolean)
   if (parts.length === 0) return '?'
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
@@ -26,7 +28,10 @@ function initials(name: string) {
 
 export function LineageMasterNode({ data }: NodeProps<MasterFlowNode>) {
   const { master, selected, highlight } = data
-  const shortName = master.name.replace(/^Maestro\s+/, '')
+  const shortName = master.name.replace(
+    /^(Maestro|Hanshi|Kyoshi|Renshi|Sensei|Taishi)\s+/i,
+    '',
+  )
 
   return (
     <motion.div

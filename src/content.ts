@@ -147,7 +147,7 @@ export type LineageNode = {
 }
 
 export const lineageIntro =
-  'Linaje que alimenta Isshin Ryu: de China y Okinawa hasta el Maestro Tatsuo Shimabuku y su discípulo Angi Uezu. Explora el mapa a pantalla completa: arrastra, haz zoom y elige un maestro.'
+  'Linaje Isshin Ryu: de Okinawa a OIKKA mundial y Chile. Explora el mapa: arrastra, haz zoom y elige un maestro.'
 
 export type LineageEdge = { id: string; source: string; target: string; label?: string }
 
@@ -166,6 +166,21 @@ export const lineageEdges: LineageEdge[] = [
   { id: 'e-kiyan-shimabuku', source: 'kiyan', target: 'shimabuku', label: '1923' },
   { id: 'e-taira-shimabuku', source: 'taira', target: 'shimabuku', label: '1958' },
   { id: 'e-shimabuku-uezu', source: 'shimabuku', target: 'uezu' },
+  { id: 'e-uezu-chase', source: 'uezu', target: 'chase', label: '2007' },
+  { id: 'e-uezu-rigby', source: 'uezu', target: 'rigby' },
+  { id: 'e-uezu-divine', source: 'uezu', target: 'divine' },
+  { id: 'e-uezu-suzuki', source: 'uezu', target: 'suzuki' },
+  { id: 'e-chase-alvear', source: 'chase', target: 'alvear' },
+  { id: 'e-chase-adler', source: 'chase', target: 'adler' },
+  { id: 'e-chase-steele', source: 'chase', target: 'steele' },
+  { id: 'e-chase-buckner', source: 'chase', target: 'buckner' },
+  { id: 'e-chase-costa', source: 'chase', target: 'costa' },
+  { id: 'e-chase-imai', source: 'chase', target: 'imai' },
+  { id: 'e-chase-michels', source: 'chase', target: 'michels' },
+  { id: 'e-chase-nau', source: 'chase', target: 'nau' },
+  { id: 'e-chase-powers', source: 'chase', target: 'powers' },
+  { id: 'e-chase-spencer', source: 'chase', target: 'spencer' },
+  { id: 'e-chase-strong', source: 'chase', target: 'strong' },
 ]
 
 /** Posiciones del layout (coordenadas del canvas React Flow) */
@@ -183,6 +198,23 @@ export const lineagePositions: Record<string, { x: number; y: number }> = {
   taira: { x: 820, y: 980 },
   shimabuku: { x: 420, y: 1240 },
   uezu: { x: 420, y: 1480 },
+  // OIKKA · oficiales bajo Uezu
+  rigby: { x: -40, y: 1720 },
+  chase: { x: 420, y: 1720 },
+  divine: { x: 880, y: 1720 },
+  suzuki: { x: 1320, y: 1720 },
+  // Bajo Chase · Chile + oficiales / comité OIKKA
+  adler: { x: -200, y: 1980 },
+  steele: { x: 0, y: 1980 },
+  buckner: { x: 200, y: 1980 },
+  alvear: { x: 420, y: 1980 },
+  costa: { x: 640, y: 1980 },
+  imai: { x: 860, y: 1980 },
+  michels: { x: 1080, y: 1980 },
+  nau: { x: -80, y: 2220 },
+  powers: { x: 160, y: 2220 },
+  spencer: { x: 400, y: 2220 },
+  strong: { x: 640, y: 2220 },
 }
 
 export const lineageNodes: LineageNode[] = [
@@ -285,9 +317,104 @@ export const lineageNodes: LineageNode[] = [
     id: 'uezu',
     name: 'Maestro Angi Uezu',
     years: '1935–2024',
-    style: 'OIKKA · Isshin-Ryu',
-    note: 'Yerno y alumno principal de Shimabuku. Fundó OIKKA (1990) y Junken Karate-Do (1992). Presidente Emérito hasta su fallecimiento en 2024.',
+    style: 'OIKKA · Fundador y Presidente Emérito',
+    note: 'Yerno y alumno principal de Shimabuku. Fundó OIKKA (1990). En 2007 nombró a Christopher Chase como sucesor; sirvió como Presidente Emérito hasta 2024.',
     photo: assetUrl('images/masters/uezu.jpg'),
+  },
+  {
+    id: 'chase',
+    name: 'Maestro Christopher Chase',
+    style: 'Presidente OIKKA · 10º dan Hanshi-sei',
+    note: 'Protegido de Angi Uezu; nombrado Presidente de OIKKA el 1 de febrero de 2007. Décadas de enseñanza en Japón y EE.UU.',
+    yearLink: '2007',
+    photo: assetUrl('images/masters/chase.png'),
+  },
+  {
+    id: 'rigby',
+    name: 'Maestro Reese Rigby',
+    style: 'Vicepresidente OIKKA · 10º dan',
+    note: 'Facilitador del programa de instructores. Practica Isshin Ryu desde 1969.',
+    photo: assetUrl('images/masters/rigby.png'),
+  },
+  {
+    id: 'divine',
+    name: 'Maestro John Devine',
+    style: 'Vicepresidente OIKKA · 10º dan',
+    note: 'Facilitador de competencia. Entrenó con Angi Uezu desde 1972.',
+    photo: assetUrl('images/masters/divine.png'),
+  },
+  {
+    id: 'suzuki',
+    name: 'Maestro Harumi Suzuki',
+    style: 'Vicepresidente OIKKA · Operaciones Japón',
+    note: 'Vicepresidente de operaciones de OIKKA en Japón.',
+    photo: assetUrl('images/masters/suzuki.png'),
+  },
+  {
+    id: 'adler',
+    name: 'Hanshi Nick Adler',
+    style: 'Asesor · Proyectos especiales OIKKA',
+    note: 'Oficial OIKKA: Advisor, Special Projects.',
+  },
+  {
+    id: 'steele',
+    name: 'Kyoshi Howard Steele',
+    style: 'Director de operaciones OIKKA',
+    note: 'Chief Director of Operations de la asociación.',
+  },
+  {
+    id: 'buckner',
+    name: 'Renshi Tim Buckner',
+    style: 'Secretario OIKKA',
+    note: 'Secretary de la Okinawa Isshin Ryu Karate Kobudo Association.',
+  },
+  {
+    id: 'alvear',
+    name: 'Kyoshi Carlos Alvear Torres',
+    style: 'OIKKA Chile · Isshin Akira Kan, Temuco',
+    note: 'Representante OIKKA en Chile. Fundador del Dojo Isshin Akira (Temuco); comité OIKKA bajo la dirección de Kaicho Chase.',
+  },
+  {
+    id: 'costa',
+    name: 'Maestro Joao Costa',
+    style: 'Comité OIKKA',
+    note: 'Miembro del comité de la Okinawa Isshin Ryu Karate Kobudo Association.',
+  },
+  {
+    id: 'imai',
+    name: 'Maestro Takanobu Imai',
+    style: 'Comité OIKKA',
+    note: 'Miembro del comité de la Okinawa Isshin Ryu Karate Kobudo Association.',
+  },
+  {
+    id: 'michels',
+    name: 'Maestro Charlie Michels',
+    style: 'Comité OIKKA',
+    note: 'Miembro del comité de la Okinawa Isshin Ryu Karate Kobudo Association.',
+  },
+  {
+    id: 'nau',
+    name: 'Maestro Tom Nau',
+    style: 'Comité OIKKA',
+    note: 'Miembro del comité de la Okinawa Isshin Ryu Karate Kobudo Association.',
+  },
+  {
+    id: 'powers',
+    name: 'Maestro Ed Powers',
+    style: 'Comité OIKKA',
+    note: 'Miembro del comité de la Okinawa Isshin Ryu Karate Kobudo Association.',
+  },
+  {
+    id: 'spencer',
+    name: 'Maestro Angie Spencer',
+    style: 'Comité OIKKA',
+    note: 'Miembro del comité de la Okinawa Isshin Ryu Karate Kobudo Association.',
+  },
+  {
+    id: 'strong',
+    name: 'Maestro Bill Strong',
+    style: 'Comité OIKKA',
+    note: 'Miembro del comité de la Okinawa Isshin Ryu Karate Kobudo Association.',
   },
 ]
 

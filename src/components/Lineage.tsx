@@ -24,14 +24,23 @@ import {
 import { LineageMasterNode, type MasterFlowNode } from './LineageMasterNode'
 import styles from './Lineage.module.css'
 
-const FOCUS = new Set(['motobu', 'miyagi', 'kiyan', 'taira', 'shimabuku', 'uezu'])
+const FOCUS = new Set([
+  'motobu',
+  'miyagi',
+  'kiyan',
+  'taira',
+  'shimabuku',
+  'uezu',
+  'chase',
+  'alvear',
+])
 
-const QUICK = ['shimabuku', 'uezu', 'kiyan', 'miyagi', 'motobu', 'taira'] as const
+const QUICK = ['shimabuku', 'uezu', 'chase', 'alvear', 'kiyan', 'miyagi'] as const
 
 const nodeTypes = { master: LineageMasterNode }
 
 function displayName(name: string) {
-  return name.replace(/^Maestro\s+/, '')
+  return name.replace(/^(Maestro|Hanshi|Kyoshi|Renshi|Sensei|Taishi)\s+/i, '')
 }
 
 function buildNodes(activeId: string): MasterFlowNode[] {
