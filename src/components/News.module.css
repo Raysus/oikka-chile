@@ -46,6 +46,14 @@
   background: var(--color-surface);
 }
 
+.cardImage {
+  width: calc(100% + 2.4rem);
+  max-width: none;
+  height: 10rem;
+  object-fit: cover;
+  margin: -1.15rem -1.2rem 0.85rem;
+}
+
 .date {
   margin: 0 0 0.4rem;
   color: var(--color-muted);

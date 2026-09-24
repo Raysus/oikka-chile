@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
 import styles from './AccountMenu.module.css'
@@ -174,68 +175,75 @@ export function AccountMenu({ tone = 'dark', compact = false }: AccountMenuProps
         </button>
       )}
 
-      {loginOpen ? (
-        <div className={styles.modalRoot} role="presentation">
-          <button
-            type="button"
-            className={styles.backdrop}
-            aria-label="Cerrar"
-            onClick={() => setLoginOpen(false)}
-          />
-          <div
-            className={styles.modal}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-          >
-            <h2 id={titleId}>Iniciar sesión</h2>
-            <p className={styles.modalLead}>
-              Acceso provisional para la asociación. Más adelante se conectará al panel de
-              miembros.
-            </p>
-            <form className={styles.form} onSubmit={handleLogin}>
-              <label>
-                Nombre
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  autoComplete="name"
-                  required
-                />
-              </label>
-              <label>
-                Correo
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoComplete="email"
-                  required
-                />
-              </label>
-              <label>
-                Contraseña
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  autoComplete="current-password"
-                  required
-                />
-              </label>
-              {error ? <p className={styles.error}>{error}</p> : null}
-              <div className={styles.formActions}>
-                <button type="button" className={styles.secondary} onClick={() => setLoginOpen(false)}>
-                  Cancelar
-                </button>
-                <button type="submit" className={styles.primary}>
-                  Entrar
-                </button>
+      {loginOpen
+        ? createPortal(
+            <div className={styles.modalRoot} role="presentation">
+              <button
+                type="button"
+                className={styles.backdrop}
+                aria-label="Cerrar"
+                onClick={() => setLoginOpen(false)}
+              />
+              <div
+                className={styles.modal}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={titleId}
+              >
+                <h2 id={titleId}>Iniciar sesión</h2>
+                <p className={styles.modalLead}>
+                  Acceso provisional para la asociación. Más adelante se conectará al panel de
+                  miembros.
+                </p>
+                <form className={styles.form} onSubmit={handleLogin}>
+                  <label>
+                    Nombre
+                    <input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      autoComplete="name"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Correo
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      autoComplete="email"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Contraseña
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      autoComplete="current-password"
+                      required
+                    />
+                  </label>
+                  {error ? <p className={styles.error}>{error}</p> : null}
+                  <div className={styles.formActions}>
+                    <button
+                      type="button"
+                      className={styles.secondary}
+                      onClick={() => setLoginOpen(false)}
+                    >
+                      Cancelar
+                    </button>
+                    <button type="submit" className={styles.primary}>
+                      Entrar
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
-        </div>
-      ) : null}
+            </div>,
+            document.body,
+          )
+        : null}
     </div>
   )
 }

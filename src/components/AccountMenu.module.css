@@ -140,6 +140,8 @@
   display: grid;
   place-items: center;
   padding: 1rem;
+  overflow: auto;
+  color-scheme: dark;
 }
 
 .backdrop {
@@ -153,12 +155,13 @@
 .modal {
   position: relative;
   z-index: 1;
+  isolation: isolate;
   width: min(24rem, 100%);
   padding: 1.35rem 1.25rem 1.25rem;
   border-radius: 0.85rem;
-  background: #161616;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f3f3f3;
+  background: #161410;
+  border: 1px solid rgba(247, 243, 228, 0.16);
+  color: #f7f3e4;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
@@ -166,11 +169,14 @@
   margin: 0 0 0.5rem;
   font-family: var(--font-display);
   font-size: 1.65rem;
+  color: #f7f3e4;
+  -webkit-text-fill-color: #f7f3e4;
 }
 
 .modalLead {
   margin: 0 0 1.15rem;
-  color: rgba(243, 243, 243, 0.65);
+  color: #d5cfc0;
+  -webkit-text-fill-color: #d5cfc0;
   font-size: 0.9rem;
   line-height: 1.45;
 }
@@ -187,7 +193,8 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(243, 243, 243, 0.7);
+  color: #e6dfcf;
+  -webkit-text-fill-color: #e6dfcf;
 }
 
 .form input {
@@ -195,15 +202,22 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0.7rem 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(247, 243, 228, 0.22);
   border-radius: 0.35rem;
-  background: #0f0f0f;
-  color: #fff;
+  background: #0c0b09;
+  color: #f7f3e4;
+  -webkit-text-fill-color: #f7f3e4;
+  caret-color: #f7f3e4;
   font: inherit;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: normal;
   text-transform: none;
+}
+
+.form input::placeholder {
+  color: #9a9488;
+  -webkit-text-fill-color: #9a9488;
 }
 
 .form input:focus {
@@ -244,8 +258,9 @@
 
 .secondary {
   background: transparent;
-  color: rgba(243, 243, 243, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f7f3e4;
+  -webkit-text-fill-color: #f7f3e4;
+  border: 1px solid rgba(247, 243, 228, 0.28);
 }
 
 .srOnly {

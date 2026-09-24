@@ -101,3 +101,10 @@ p {
 section[id] {
   scroll-margin-top: calc(var(--header-height) + 0.75rem);
 }
+
+html.home-lock,
+html.home-lock body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}

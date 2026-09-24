@@ -1,32 +1,34 @@
-import { angiVideos, videosIntro } from '../content'
+import { VideoPlayer } from './VideoPlayer'
+import { useMedia } from '../lib/useMedia'
 import styles from './Videos.module.css'
 
 export function Videos() {
+  const { videos, videosTitle, videosIntro, loading } = useMedia()
+
   return (
     <section id="videos" className={styles.section} aria-labelledby="videos-title">
       <div className={styles.inner}>
         <header className={styles.header}>
-          <p className={styles.eyebrow}>Maestro Angi Uezu</p>
+          <p className={styles.eyebrow}>{videosTitle || 'Maestro Angi Uezu'}</p>
           <h2 id="videos-title" className={styles.title}>
             Videos
           </h2>
           <p className={styles.intro}>{videosIntro}</p>
         </header>
 
+        {loading ? <p className={styles.intro}>Cargando videos…</p> : null}
+        {!loading && videos.length === 0 ? (
+          <p className={styles.intro}>Pronto publicaremos videos de archivo.</p>
+        ) : null}
+
         <div className={styles.grid}>
-          {angiVideos.map((video) => (
+          {videos.map((video) => (
             <article key={video.id} className={styles.card}>
               <div className={styles.frame}>
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${video.id}`}
-                  title={video.title}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                <VideoPlayer video={video} />
               </div>
               <h3 className={styles.cardTitle}>{video.title}</h3>
-              <p className={styles.cardNote}>{video.note}</p>
+              {video.note ? <p className={styles.cardNote}>{video.note}</p> : null}
             </article>
           ))}
         </div>

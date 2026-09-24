@@ -11,6 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+data/
+uploads/
+.local-backup/
+maintenance/.deploy-stamp
 
 # Editor directories and files
 .vscode/*

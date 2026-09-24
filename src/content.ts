@@ -1,3 +1,4 @@
+import type { EventItem, GalleryItem, NewsItem, VideosDoc } from './lib/api'
 import { assetUrl } from './lib/paths'
 
 export const site = {
@@ -13,6 +14,7 @@ export const navLinks = [
   { label: 'OIKKA', href: '/#oikka' },
   { label: 'Linaje', href: '/#linaje' },
   { label: 'Noticias', href: '/#noticias' },
+  { label: 'Eventos', href: '/#eventos' },
   { label: 'Videos', href: '/#videos' },
   { label: 'Historia y biografías', href: '/historia-y-biografias' },
   { label: 'Galería', href: '/#galeria' },
@@ -395,6 +397,29 @@ export const gallery = [
   { src: assetUrl('images/gallery-4.jpg'), alt: 'Comunidad OIKKA Chile' },
 ] as const
 
+
+export const fallbackVideos: VideosDoc = {
+  title: 'Maestro Angi Uezu',
+  intro: videosIntro,
+  items: angiVideos.map((video, index) => ({
+    id: `fallback-${video.id}`,
+    youtubeId: video.id,
+    fileUrl: null,
+    title: video.title,
+    note: video.note,
+    sortOrder: index,
+  })),
+}
+
+export const fallbackEvents: EventItem[] = []
+
+export const fallbackGallery: GalleryItem[] = gallery.map((item, index) => ({
+  id: `fallback-gallery-${index + 1}`,
+  imageUrl: item.src,
+  alt: item.alt,
+  sortOrder: index,
+}))
+
 export const contact = {
   title: 'Contacto',
   text: 'Escríbenos para conocer la escuela más cercana o resolver dudas sobre OIKKA Chile.',
@@ -419,21 +444,32 @@ export const contact = {
 export const news = {
   title: 'Noticias',
   intro: 'Novedades de la asociación y de los dojos afiliados a OIKKA en Chile.',
-  items: [
-    {
-      id: 'bienvenida-sitio',
-      date: '2026-08',
-      title: 'Nuevo sitio oficial de OIKKA Chile',
-      body: 'Presentamos el espacio digital de la asociación: escuelas, linaje, historia y contacto en un solo lugar.',
-    },
-    {
-      id: 'linaje-vivo',
-      date: '2026-08',
-      title: 'Árbol del linaje Isshin Ryu',
-      body: 'Explora el mapa interactivo del linaje, desde Okinawa hasta la familia OIKKA en Chile.',
-    },
-  ],
 }
+
+/**
+ * Noticias de respaldo para entornos sin backend, como GitHub Pages.
+ * En el VPS el panel de /admin las reemplaza.
+ */
+export const fallbackNews: NewsItem[] = [
+  {
+    id: 'bienvenida-sitio',
+    title: 'Nuevo sitio oficial de OIKKA Chile',
+    body: 'Presentamos el espacio digital de la asociación: escuelas, linaje, historia y contacto en un solo lugar.',
+    imageUrl: null,
+    createdAt: '2026-08-15T12:00:00.000Z',
+    updatedAt: '2026-08-15T12:00:00.000Z',
+    authorEmail: 'sistema',
+  },
+  {
+    id: 'linaje-vivo',
+    title: 'Árbol del linaje Isshin Ryu',
+    body: 'Explora el mapa interactivo del linaje, desde Okinawa hasta la familia OIKKA en Chile.',
+    imageUrl: null,
+    createdAt: '2026-08-01T12:00:00.000Z',
+    updatedAt: '2026-08-01T12:00:00.000Z',
+    authorEmail: 'sistema',
+  },
+]
 
 export const footer = {
   note: 'Okinawa Isshin Ryu Karate Kobudo Association — Chile',

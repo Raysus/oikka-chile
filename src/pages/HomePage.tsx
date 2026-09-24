@@ -9,9 +9,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import {
-  angiVideos,
   contact,
-  gallery,
   hero,
   heroSlides,
   news,
@@ -21,6 +19,12 @@ import {
 } from '../content'
 import { LineageGraph } from '../components/Lineage'
 import { AccountMenu } from '../components/AccountMenu'
+import { VideoPlayer } from '../components/VideoPlayer'
+import { imageSrc } from '../lib/api'
+import { useNews } from '../lib/useNews'
+import { useMedia } from '../lib/useMedia'
+import { useUpcomingEvents } from '../lib/useUpcomingEvents'
+import { formatEventWhen } from '../lib/eventFormat'
 import styles from './HomePage.module.css'
 
 const sections = [
@@ -29,13 +33,20 @@ const sections = [
   { id: 'oikka', label: 'OIKKA' },
   { id: 'linaje', label: 'Linaje' },
   { id: 'noticias', label: 'Noticias' },
+  { id: 'eventos', label: 'Eventos' },
   { id: 'videos', label: 'Videos' },
   { id: 'contacto', label: 'Contacto' },
 ] as const
 
 const pillars = [oikka.mission, oikka.vision, oikka.identity]
-const featuredVideo = angiVideos[0]
-const sideVideos = angiVideos.slice(1, 3)
+
+function formatNewsDate(value: string) {
+  return new Intl.DateTimeFormat('es-CL', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(value))
+}
 
 export function HomePage() {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -44,6 +55,11 @@ export function HomePage() {
   const [pillar, setPillar] = useState(0)
   const [activeSection, setActiveSection] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { items: newsItems, loading: newsLoading } = useNews()
+  const { gallery, videos, videosTitle, videosIntro, loading: mediaLoading } = useMedia()
+  const { items: upcomingEvents, loading: eventsLoading } = useUpcomingEvents()
+  const featuredVideo = videos[0]
+  const sideVideos = videos.slice(1)
   const { scrollYProgress } = useScroll({ container: rootRef })
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28 })
   const heroY = useTransform(scrollYProgress, [0, 0.18], [0, 70])
@@ -67,11 +83,13 @@ export function HomePage() {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    document.documentElement.classList.add('home-lock')
+    document.body.classList.add('home-lock')
     return () => {
-      document.body.style.overflow = ''
+      document.documentElement.classList.remove('home-lock')
+      document.body.classList.remove('home-lock')
     }
-  }, [menuOpen])
+  }, [])
 
   function go(id: string) {
     setMenuOpen(false)
@@ -394,21 +412,68 @@ export function HomePage() {
             <p className={styles.kickerDark}>Actualidad</p>
             <h2>{news.title}</h2>
             <p className={styles.newsIntro}>{news.intro}</p>
+            {newsLoading ? <p className={styles.newsIntro}>Cargando noticias…</p> : null}
+            {!newsLoading && newsItems.length === 0 ? (
+              <p className={styles.newsIntro}>Aún no hay noticias publicadas.</p>
+            ) : null}
             <div className={styles.newsGrid}>
-              {news.items.map((item, i) => (
-                <motion.article
-                  key={item.id}
-                  className={styles.newsCard}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                >
-                  <p>{item.date}</p>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </motion.article>
-              ))}
+              {newsItems.map((item, i) => {
+                const src = imageSrc(item.imageUrl)
+                return (
+                  <motion.article
+                    key={item.id}
+                    className={styles.newsCard}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                  >
+                    {src ? <img className={styles.newsCardImg} src={src} alt="" loading="lazy" /> : null}
+                    <p className={styles.newsDate}>
+                      <time dateTime={item.createdAt}>{formatNewsDate(item.createdAt)}</time>
+                    </p>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </motion.article>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="eventos" className={styles.section}>
+          <div className={styles.sectionInner}>
+            <p className={styles.kickerDark}>Calendario</p>
+            <h2>Próximos eventos</h2>
+            <p className={styles.newsIntro}>
+              Exámenes, seminarios y actividades de los dojos afiliados a OIKKA.
+            </p>
+            {eventsLoading ? <p className={styles.newsIntro}>Cargando eventos…</p> : null}
+            {!eventsLoading && upcomingEvents.length === 0 ? (
+              <p className={styles.newsIntro}>No hay eventos próximos por ahora.</p>
+            ) : null}
+            <div className={styles.newsGrid}>
+              {upcomingEvents.map((item, i) => {
+                const src = imageSrc(item.imageUrl)
+                return (
+                  <motion.article
+                    key={item.id}
+                    className={styles.newsCard}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                  >
+                    {src ? <img className={styles.newsCardImg} src={src} alt="" loading="lazy" /> : null}
+                    <p className={styles.newsDate}>
+                      <time dateTime={item.date}>{formatEventWhen(item)}</time>
+                    </p>
+                    <h3>{item.title}</h3>
+                    {item.place ? <p className={styles.newsDate}>{item.place}</p> : null}
+                    <p>{item.body}</p>
+                  </motion.article>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -416,65 +481,68 @@ export function HomePage() {
         <section id="videos" className={`${styles.section} ${styles.warm}`}>
           <div className={styles.sectionInner}>
             <p className={styles.kickerDark}>Videos</p>
-            <h2>Maestro Angi Uezu</h2>
+            <h2>{videosTitle || 'Maestro Angi Uezu'}</h2>
             <p className={styles.newsIntro}>
-              Archivo histórico de kata, kihon y kobudo para estudiar el Isshin Ryu de Okinawa.
+              {videosIntro ||
+                'Archivo histórico de kata, kihon y kobudo para estudiar el Isshin Ryu de Okinawa.'}
             </p>
+            {mediaLoading ? <p className={styles.newsIntro}>Cargando videos…</p> : null}
+            {!mediaLoading && videos.length === 0 ? (
+              <p className={styles.newsIntro}>Pronto publicaremos videos de archivo.</p>
+            ) : null}
 
-            <motion.article
-              className={styles.videoFeatured}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <div className={styles.embed}>
-                <iframe
-                  title={featuredVideo.title}
-                  src={`https://www.youtube-nocookie.com/embed/${featuredVideo.id}`}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+            {featuredVideo ? (
+              <motion.article
+                className={styles.videoFeatured}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <div className={styles.embed}>
+                  <VideoPlayer video={featuredVideo} />
+                </div>
+                <h3>{featuredVideo.title}</h3>
+                {featuredVideo.note ? <p className={styles.newsIntro}>{featuredVideo.note}</p> : null}
+              </motion.article>
+            ) : null}
+
+            {sideVideos.length > 0 ? (
+              <div className={styles.videoSide}>
+                {sideVideos.map((v, i) => (
+                  <motion.article
+                    key={v.id}
+                    initial={{ opacity: 0, scale: 0.97 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                  >
+                    <div className={styles.embed}>
+                      <VideoPlayer video={v} />
+                    </div>
+                    <h3>{v.title}</h3>
+                    {v.note ? <p className={styles.newsIntro}>{v.note}</p> : null}
+                  </motion.article>
+                ))}
               </div>
-              <h3>{featuredVideo.title}</h3>
-            </motion.article>
-
-            <div className={styles.videoSide}>
-              {sideVideos.map((v, i) => (
-                <motion.article
-                  key={v.id}
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                >
-                  <div className={styles.embed}>
-                    <iframe
-                      title={v.title}
-                      src={`https://www.youtube-nocookie.com/embed/${v.id}`}
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                  <h3>{v.title}</h3>
-                </motion.article>
-              ))}
-            </div>
+            ) : null}
 
             <div id="galeria" className={styles.galleryStrip}>
-              {gallery.map((g, i) => (
-                <motion.img
-                  key={g.src}
-                  src={g.src}
-                  alt={g.alt}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  whileHover={{ scale: 1.03 }}
-                />
-              ))}
+              {gallery.map((g, i) => {
+                const src = imageSrc(g.imageUrl)
+                if (!src) return null
+                return (
+                  <motion.img
+                    key={g.id}
+                    src={src}
+                    alt={g.alt}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                    whileHover={{ scale: 1.03 }}
+                  />
+                )
+              })}
             </div>
           </div>
         </section>
