@@ -18,10 +18,8 @@ import {
   site,
 } from '../content'
 import { LineageGraph } from '../components/Lineage'
-import { AccountMenu } from '../components/AccountMenu'
 import { AdminAccountMenu } from '../components/AdminAccountMenu'
 import { VideoPlayer } from '../components/VideoPlayer'
-import { useAdminAuth } from '../adminAuth/useAdminAuth'
 import { imageSrc } from '../lib/api'
 import { useNews } from '../lib/useNews'
 import { useMedia } from '../lib/useMedia'
@@ -57,7 +55,6 @@ export function HomePage() {
   const [pillar, setPillar] = useState(0)
   const [activeSection, setActiveSection] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { user: admin } = useAdminAuth()
   const { items: newsItems, loading: newsLoading } = useNews()
   const { gallery, videos, videosTitle, videosIntro, loading: mediaLoading } = useMedia()
   const { items: upcomingEvents, loading: eventsLoading } = useUpcomingEvents()
@@ -150,11 +147,7 @@ export function HomePage() {
             </Link>
           </nav>
 
-          {admin ? (
-            <AdminAccountMenu tone="dark" onNavigate={() => setMenuOpen(false)} />
-          ) : (
-            <AccountMenu tone="dark" compact />
-          )}
+          <AdminAccountMenu tone="dark" compact onNavigate={() => setMenuOpen(false)} />
 
           <button
             type="button"
