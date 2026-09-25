@@ -48,6 +48,7 @@ export type VideosDoc = {
 export type AdminUser = {
   id: string
   email: string
+  name: string | null
 }
 
 const API_BASE = import.meta.env.VITE_API_URL ?? ''
@@ -91,6 +92,17 @@ export const api = {
       body: JSON.stringify({ email, password }),
     }),
   logout: () => request<{ ok: boolean }>('/api/auth/logout', { method: 'POST' }),
+  updateMe: (body: {
+    name?: string
+    email?: string
+    currentPassword?: string
+    newPassword?: string
+  }) =>
+    request<AdminUser>('/api/auth/me', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }),
   listNews: () => request<NewsItem[]>('/api/news'),
   createNews: (formData: FormData) =>
     request<NewsItem>('/api/news', {

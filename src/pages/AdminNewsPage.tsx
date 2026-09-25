@@ -1,6 +1,7 @@
 import { type FormEvent, useEffect, useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useAdminAuth } from '../adminAuth/useAdminAuth'
+import { AdminAccountMenu } from '../components/AdminAccountMenu'
 import {
   api,
   imageSrc,
@@ -16,9 +17,25 @@ import styles from './Admin.module.css'
 
 type Tab = 'noticias' | 'eventos' | 'galeria' | 'videos'
 
+const TAB_TITLES: Record<Tab, string> = {
+  noticias: 'Noticias',
+  eventos: 'Eventos',
+  galeria: 'Galería',
+  videos: 'Videos',
+}
+
+function isTab(value: string | undefined): value is Tab {
+  return value === 'noticias' || value === 'eventos' || value === 'galeria' || value === 'videos'
+}
+
 export function AdminNewsPage() {
-  const { user, loading, logout } = useAdminAuth()
-  const [tab, setTab] = useState<Tab>('noticias')
+  const { section } = useParams<{ section?: string }>()
+  const navigate = useNavigate()
+  const { user, loading } = useAdminAuth()
+  const tab: Tab = isTab(section) ? section : 'noticias'
+  const setTab = (next: Tab) => {
+    navigate(`/admin/${next}`)
+  }
   const [items, setItems] = useState<NewsItem[]>([])
   const [events, setEvents] = useState<EventItem[]>([])
   const [editingEventId, setEditingEventId] = useState<string | null>(null)
@@ -83,6 +100,10 @@ export function AdminNewsPage() {
 
   if (!user) {
     return <Navigate to="/admin" replace />
+  }
+
+  if (section && !isTab(section)) {
+    return <Navigate to="/admin/noticias" replace />
   }
 
   function flash(ok: string | null, fail?: unknown) {
@@ -381,14 +402,7 @@ export function AdminNewsPage() {
     }
   }
 
-  const pageTitle =
-    tab === 'eventos'
-      ? 'Eventos'
-      : tab === 'galeria'
-        ? 'Galería'
-        : tab === 'videos'
-          ? 'Videos'
-          : 'Noticias'
+  const pageTitle = TAB_TITLES[tab]
 
   return (
     <div className={styles.page}>
@@ -397,45 +411,18 @@ export function AdminNewsPage() {
           <div>
             <p className={styles.eyebrow}>Panel</p>
             <h1 className={styles.title}>{pageTitle}</h1>
-            <p className={styles.help}>Sesión: {user.email}</p>
+            <p className={styles.help}>
+              {user.name ? `${user.name} · ` : ''}
+              {user.email}
+            </p>
           </div>
           <div className={styles.topActions}>
+            <AdminAccountMenu />
             <Link className={styles.back} to="/">
               Ver sitio
             </Link>
-            <button
-              className={styles.secondaryButton}
-              type="button"
-              onClick={() => void logout()}
-            >
-              Cerrar sesión
-            </button>
           </div>
         </header>
-
-        <div className={styles.tabs} role="tablist" aria-label="Contenido del sitio">
-          {([
-            ['noticias', 'Noticias'],
-            ['eventos', 'Eventos'],
-            ['galeria', 'Galería'],
-            ['videos', 'Videos'],
-          ] as const).map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              role="tab"
-              aria-selected={tab === id}
-              className={tab === id ? `${styles.tab} ${styles.tabOn}` : styles.tab}
-              onClick={() => {
-                setTab(id)
-                setError(null)
-                setMessage(null)
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
 
         <div className={styles.panelWide} style={{ marginBottom: '0.25rem' }}>
           <h2 className={styles.sectionTitle}>Estadísticas del sitio</h2>

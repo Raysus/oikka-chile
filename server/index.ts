@@ -14,6 +14,7 @@ import {
   readNews,
   readUsers,
   writeNews,
+  writeUsers,
   type NewsItem,
 } from './store.js'
 import { registerMediaRoutes } from './media-routes.js'
@@ -115,6 +116,14 @@ function requireAuth(
   next()
 }
 
+function toPublicUser(user: { id: string; email: string; name?: string }) {
+  return {
+    id: user.id,
+    email: user.email,
+    name: user.name?.trim() || null,
+  }
+}
+
 app.get('/api/health', (_req, res) => {
   res.json({ ok: true })
 })
@@ -124,7 +133,13 @@ app.get('/api/auth/me', (req, res) => {
     res.status(401).json({ error: 'No autenticado' })
     return
   }
-  res.json({ id: req.session.userId, email: req.session.email })
+  const users = readUsers(rootDir)
+  const user = users.find((item) => item.id === req.session.userId)
+  if (!user) {
+    res.status(401).json({ error: 'No autenticado' })
+    return
+  }
+  res.json(toPublicUser(user))
 })
 
 app.post('/api/auth/login', async (req, res) => {
@@ -147,7 +162,7 @@ app.post('/api/auth/login', async (req, res) => {
 
   req.session.userId = user.id
   req.session.email = user.email
-  res.json({ id: user.id, email: user.email })
+  res.json(toPublicUser(user))
 })
 
 app.post('/api/auth/logout', (req, res) => {
@@ -155,6 +170,62 @@ app.post('/api/auth/logout', (req, res) => {
     res.clearCookie('oikka.sid')
     res.json({ ok: true })
   })
+})
+
+app.patch('/api/auth/me', requireAuth, async (req, res) => {
+  const users = readUsers(rootDir)
+  const index = users.findIndex((item) => item.id === req.session.userId)
+  if (index < 0) {
+    res.status(401).json({ error: 'No autenticado' })
+    return
+  }
+
+  const current = users[index]
+  const name =
+    req.body.name === undefined ? current.name : String(req.body.name ?? '').trim()
+  const emailRaw =
+    req.body.email === undefined
+      ? current.email
+      : String(req.body.email ?? '')
+          .trim()
+          .toLowerCase()
+  const currentPassword = String(req.body.currentPassword ?? '')
+  const newPassword = String(req.body.newPassword ?? '')
+
+  if (!emailRaw) {
+    res.status(400).json({ error: 'El correo es obligatorio' })
+    return
+  }
+
+  if (emailRaw !== current.email) {
+    if (users.some((item, i) => i !== index && item.email === emailRaw)) {
+      res.status(400).json({ error: 'Ese correo ya está en uso' })
+      return
+    }
+  }
+
+  let passwordHash = current.passwordHash
+  if (newPassword) {
+    if (newPassword.length < 8) {
+      res.status(400).json({ error: 'La nueva contraseña debe tener al menos 8 caracteres' })
+      return
+    }
+    if (!currentPassword || !(await bcrypt.compare(currentPassword, current.passwordHash))) {
+      res.status(400).json({ error: 'La contraseña actual no es correcta' })
+      return
+    }
+    passwordHash = await bcrypt.hash(newPassword, 10)
+  }
+
+  users[index] = {
+    ...current,
+    name: name || undefined,
+    email: emailRaw,
+    passwordHash,
+  }
+  writeUsers(rootDir, users)
+  req.session.email = emailRaw
+  res.json(toPublicUser(users[index]))
 })
 
 app.get('/api/news', (_req, res) => {

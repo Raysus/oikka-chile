@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAdminAuth } from '../adminAuth/useAdminAuth'
 import { navLinks, site } from '../content'
 import { withBase } from '../lib/paths'
 import { AccountMenu } from './AccountMenu'
+import { AdminAccountMenu } from './AdminAccountMenu'
 import styles from './Header.module.css'
 
 export function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { user: admin } = useAdminAuth()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -63,7 +66,11 @@ export function Header() {
             )}
           </nav>
 
-          <AccountMenu tone="light" />
+          {admin ? (
+            <AdminAccountMenu onNavigate={() => setOpen(false)} tone="light" />
+          ) : (
+            <AccountMenu tone="light" />
+          )}
 
           <button
             type="button"

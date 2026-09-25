@@ -10,6 +10,7 @@ export type User = {
   email: string
   passwordHash: string
   role: 'admin'
+  name?: string
 }
 
 export type NewsItem = {

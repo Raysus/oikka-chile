@@ -32,9 +32,19 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     setUser(null)
   }, [])
 
+  const updateProfile = useCallback(async (body: {
+    name?: string
+    email?: string
+    currentPassword?: string
+    newPassword?: string
+  }) => {
+    const me = await api.updateMe(body)
+    setUser(me)
+  }, [])
+
   const value = useMemo(
-    () => ({ user, loading, login, logout, refresh }),
-    [user, loading, login, logout, refresh],
+    () => ({ user, loading, login, logout, refresh, updateProfile }),
+    [user, loading, login, logout, refresh, updateProfile],
   )
 
   return <AdminAuthContext.Provider value={value}>{children}</AdminAuthContext.Provider>

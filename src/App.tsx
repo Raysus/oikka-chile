@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage'
 import { HistoriaPage } from './pages/HistoriaPage'
 import { AdminLoginPage } from './pages/AdminLoginPage'
 import { AdminNewsPage } from './pages/AdminNewsPage'
+import { AdminAccountPage } from './pages/AdminAccountPage'
 import './App.css'
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/historia-y-biografias" element={<HistoriaPage />} />
             <Route path="/admin" element={<AdminLoginPage />} />
-            <Route path="/admin/noticias" element={<AdminNewsPage />} />
+            <Route path="/admin/cuenta" element={<AdminAccountPage />} />
+            <Route path="/admin/:section" element={<AdminNewsPage />} />
             <Route path="/propuestas" element={<Navigate to="/" replace />} />
             <Route path="/propuesta-a" element={<Navigate to="/" replace />} />
             <Route path="/propuesta-b" element={<Navigate to="/" replace />} />
