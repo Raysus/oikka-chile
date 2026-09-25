@@ -11,7 +11,6 @@ import {
   type VideoItem,
   type VideosDoc,
 } from '../lib/api'
-import { getAnalyticsSnapshot } from '../lib/analytics'
 import { formatEventWhen, isUpcomingEvent } from '../lib/eventFormat'
 import styles from './Admin.module.css'
 
@@ -65,14 +64,6 @@ export function AdminNewsPage() {
   const [error, setError] = useState<string | null>(null)
   const [message, setMessage] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
-  const [stats, setStats] = useState(() => getAnalyticsSnapshot())
-
-  useEffect(() => {
-    const refresh = () => setStats(getAnalyticsSnapshot())
-    refresh()
-    const id = window.setInterval(refresh, 4000)
-    return () => window.clearInterval(id)
-  }, [])
 
   async function loadAll() {
     const [newsItems, eventItems, galleryItems, videoDoc] = await Promise.all([
@@ -423,24 +414,6 @@ export function AdminNewsPage() {
             </Link>
           </div>
         </header>
-
-        <div className={styles.panelWide} style={{ marginBottom: '0.25rem' }}>
-          <h2 className={styles.sectionTitle}>Estadísticas del sitio</h2>
-          <p className={styles.help}>
-            Contadores locales de este navegador. Con Google Analytics (`VITE_GA_MEASUREMENT_ID`) también se
-            envían eventos globales.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(12rem,1fr))', gap: '1rem', marginTop: '1rem' }}>
-            <div>
-              <p className={styles.help}>Ingresos / visitas</p>
-              <p style={{ fontSize: '1.75rem', fontWeight: 700, margin: 0 }}>{stats.pageViews}</p>
-              <p className={styles.help}>
-                Última: {stats.lastPageViewAt ? new Date(stats.lastPageViewAt).toLocaleString('es-CL') : '—'}
-              </p>
-            </div>
-            
-          </div>
-        </div>
 
         {error ? <p className={styles.error}>{error}</p> : null}
         {message ? <p className={styles.success}>{message}</p> : null}

@@ -8,6 +8,7 @@ const ADMIN_LINKS = [
   { to: '/admin/eventos', label: 'Eventos' },
   { to: '/admin/galeria', label: 'Galería' },
   { to: '/admin/videos', label: 'Videos' },
+  { to: '/admin/estadisticas', label: 'Estadísticas' },
   { to: '/admin/cuenta', label: 'Mis datos' },
 ] as const
 
