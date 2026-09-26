@@ -51,6 +51,32 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+@media (max-width: 768px) {
+  .login {
+    padding: 0.55rem;
+    min-width: 2.6rem;
+    min-height: 2.6rem;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .login span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .compact.dark .login {
+    padding: 0.55rem;
+  }
+}
+
 .trigger {
   display: inline-flex;
   align-items: center;

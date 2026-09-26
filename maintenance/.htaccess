@@ -1,0 +1,4 @@
+DirectoryIndex index.html
+
+# Block archived WordPress from the web
+RedirectMatch 404 ^/_archive_wordpress_2026-09-01(/|$)

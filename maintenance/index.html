@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="OIKKA Isshin Ryu Chile — estamos renovando el sitio. Pronto de vuelta."
+    />
+    <meta name="robots" content="noindex, follow" />
+    <title>OIKKA Chile · En renovación</title>
+    <link rel="icon" type="image/png" href="assets/logo-oikka.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #f4f6f5;
+        --muted: rgba(244, 246, 245, 0.78);
+        --accent: #f0d978;
+        --button: #15120c;
+        --button-text: #f7f3e4;
+        --font-display: 'Bebas Neue', sans-serif;
+        --font-body: 'Sora', sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--ink);
+        background: #121410;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        align-items: end;
+        overflow: hidden;
+      }
+
+      .media {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(105deg, rgba(10, 8, 5, 0.82) 0%, rgba(10, 8, 5, 0.48) 46%, rgba(10, 8, 5, 0.78) 100%),
+          url('assets/atmosphere.jpg') center / cover no-repeat;
+        transform: scale(1.04);
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        width: min(36rem, 100%);
+        padding: clamp(2rem, 6vw, 3.5rem) clamp(1.15rem, 4vw, 2.5rem) clamp(2.25rem, 6vw, 3.25rem);
+      }
+
+      .logo {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 50%;
+        display: block;
+        margin-bottom: 1.15rem;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(3rem, 12vw, 5.4rem);
+        line-height: 0.9;
+        letter-spacing: 0.03em;
+      }
+
+      h1 span {
+        display: block;
+      }
+
+      .kicker {
+        margin: 1rem 0 0;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .lead {
+        margin: 0.7rem 0 0;
+        max-width: 34ch;
+        color: var(--muted);
+        font-size: clamp(1.02rem, 2.4vw, 1.18rem);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem 1.1rem;
+        align-items: center;
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 1.15rem;
+        background: var(--button);
+        color: var(--button-text);
+        font: inherit;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background: #2a2418;
+      }
+
+      .link {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 0.22em;
+      }
+
+      .note {
+        margin: 1.75rem 0 0;
+        max-width: 42ch;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.88rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="media" aria-hidden="true"></div>
+      <div class="content">
+        <img class="logo" src="assets/logo-oikka.png" width="72" height="72" alt="Logo OIKKA" />
+        <h1>
+          <span>OIKKA</span>
+          <span>Chile</span>
+        </h1>
+        <p class="kicker">Sitio en renovación</p>
+        <p class="lead">
+          Estamos trabajando en la nueva presencia digital de la asociación. Pronto
+          volvemos con escuelas, linaje y contacto.
+        </p>
+        <div class="actions">
+          <a class="btn" href="https://raysus.github.io/oikka-chile/">Ver avance del sitio nuevo</a>
+          <a class="link" href="mailto:senseialvear@gmail.com">Escribirnos</a>
+        </div>
+        <p class="note">
+          Okinawa Isshin Ryu Karate Kobudo Association en Chile. El contenido anterior
+          quedó respaldado mientras migramos.
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
