@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
@@ -61,14 +61,40 @@ export function AccountMenu({ tone = 'dark', compact = false }: AccountMenuProps
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const rootRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const [menuStyle, setMenuStyle] = useState<CSSProperties | undefined>()
   const titleId = useId()
+
+  useLayoutEffect(() => {
+    if (!menuOpen) {
+      setMenuStyle(undefined)
+      return
+    }
+    function update() {
+      const el = triggerRef.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      const width = Math.min(296, window.innerWidth - 24)
+      const left = Math.min(Math.max(12, rect.right - width), window.innerWidth - width - 12)
+      const top = Math.min(rect.bottom + 8, window.innerHeight - 24)
+      setMenuStyle({ top, left, width })
+    }
+    update()
+    window.addEventListener('resize', update)
+    window.addEventListener('scroll', update, true)
+    return () => {
+      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', update, true)
+    }
+  }, [menuOpen])
 
   useEffect(() => {
     if (!menuOpen && !loginOpen) return
     const onPointer = (e: MouseEvent) => {
-      if (!rootRef.current?.contains(e.target as Node)) {
-        setMenuOpen(false)
-      }
+      const target = e.target as Node
+      if (rootRef.current?.contains(target) || menuRef.current?.contains(target)) return
+      setMenuOpen(false)
     }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -125,6 +151,7 @@ export function AccountMenu({ tone = 'dark', compact = false }: AccountMenuProps
       {user ? (
         <>
           <button
+            ref={triggerRef}
             type="button"
             className={styles.avatarBtn}
             aria-expanded={menuOpen}
@@ -138,36 +165,45 @@ export function AccountMenu({ tone = 'dark', compact = false }: AccountMenuProps
             <span className={styles.srOnly}>Cuenta de {user.name}</span>
           </button>
 
-          {menuOpen ? (
-            <div className={styles.menu} role="menu" aria-label="Cuenta">
-              <div className={styles.identity}>
-                <p className={styles.userName}>{user.name}</p>
-                <p className={styles.userEmail}>{user.email}</p>
-              </div>
-              <div className={styles.divider} />
-              <Link
-                to="/historia-y-biografias"
-                className={styles.item}
-                role="menuitem"
-                onClick={() => setMenuOpen(false)}
-              >
-                <span>Historia y biografías</span>
-                <IconHistoria />
-              </Link>
-              <button
-                type="button"
-                className={styles.item}
-                role="menuitem"
-                onClick={() => {
-                  logout()
-                  setMenuOpen(false)
-                }}
-              >
-                <span>Cerrar sesión</span>
-                <IconLogout />
-              </button>
-            </div>
-          ) : null}
+          {menuOpen && menuStyle
+            ? createPortal(
+                <div
+                  ref={menuRef}
+                  className={styles.menu}
+                  role="menu"
+                  aria-label="Cuenta"
+                  style={menuStyle}
+                >
+                  <div className={styles.identity}>
+                    <p className={styles.userName}>{user.name}</p>
+                    <p className={styles.userEmail}>{user.email}</p>
+                  </div>
+                  <div className={styles.divider} />
+                  <Link
+                    to="/historia-y-biografias"
+                    className={styles.item}
+                    role="menuitem"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <span>Historia y biografías</span>
+                    <IconHistoria />
+                  </Link>
+                  <button
+                    type="button"
+                    className={styles.item}
+                    role="menuitem"
+                    onClick={() => {
+                      logout()
+                      setMenuOpen(false)
+                    }}
+                  >
+                    <span>Cerrar sesión</span>
+                    <IconLogout />
+                  </button>
+                </div>,
+                document.body,
+              )
+            : null}
         </>
       ) : (
         <button type="button" className={styles.loginBtn} onClick={openLogin}>

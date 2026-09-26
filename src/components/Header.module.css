@@ -6,6 +6,7 @@
   height: var(--header-height);
   display: flex;
   align-items: center;
+  overflow: visible;
   background: color-mix(in srgb, var(--color-bg) 72%, transparent);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;

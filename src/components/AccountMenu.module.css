@@ -67,11 +67,14 @@
 }
 
 .menu {
-  position: absolute;
-  top: calc(100% + 0.55rem);
-  right: 0;
-  z-index: 60;
+  position: fixed;
+  z-index: 91;
+  box-sizing: border-box;
   width: min(18.5rem, calc(100vw - 1.5rem));
+  max-height: min(70vh, calc(100dvh - 5rem));
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 0.85rem 0.2rem 0.55rem;
   border-radius: 0.9rem;
   background: #1a1a1a;

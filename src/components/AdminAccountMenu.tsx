@@ -1,4 +1,4 @@
-import { type FormEvent, useEffect, useId, useRef, useState } from 'react'
+import { type FormEvent, useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, useLocation } from 'react-router-dom'
 import { useAdminAuth } from '../adminAuth/useAdminAuth'
@@ -13,10 +13,38 @@ const ADMIN_LINKS = [
   { to: '/admin/cuenta', label: 'Mis datos' },
 ] as const
 
+const MENU_GAP = 8
+const MENU_WIDTH = 280
+const VIEWPORT_PAD = 12
+
 function initialOf(name: string | null | undefined, email: string) {
   const fromName = name?.trim().charAt(0)
   if (fromName) return fromName.toUpperCase()
   return email.trim().charAt(0).toUpperCase() || 'A'
+}
+
+type MenuCoords = {
+  top: number
+  left: number
+  width: number
+  maxHeight: number
+}
+
+function placeMenu(trigger: DOMRect): MenuCoords {
+  const width = Math.min(MENU_WIDTH, window.innerWidth - VIEWPORT_PAD * 2)
+  const left = Math.min(
+    Math.max(VIEWPORT_PAD, trigger.right - width),
+    window.innerWidth - width - VIEWPORT_PAD,
+  )
+  const spaceBelow = window.innerHeight - trigger.bottom - MENU_GAP - VIEWPORT_PAD
+  const spaceAbove = trigger.top - MENU_GAP - VIEWPORT_PAD
+  const preferBelow = spaceBelow >= 220 || spaceBelow >= spaceAbove
+  const maxHeight = Math.max(160, preferBelow ? spaceBelow : spaceAbove)
+  const top = preferBelow
+    ? trigger.bottom + MENU_GAP
+    : Math.max(VIEWPORT_PAD, trigger.top - MENU_GAP - maxHeight)
+
+  return { top, left, width, maxHeight }
 }
 
 type AdminAccountMenuProps = {
@@ -38,15 +66,37 @@ export function AdminAccountMenu({
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [coords, setCoords] = useState<MenuCoords | null>(null)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
   const titleId = useId()
+
+  useLayoutEffect(() => {
+    if (!open) {
+      setCoords(null)
+      return
+    }
+    function update() {
+      const el = triggerRef.current
+      if (!el) return
+      setCoords(placeMenu(el.getBoundingClientRect()))
+    }
+    update()
+    window.addEventListener('resize', update)
+    window.addEventListener('scroll', update, true)
+    return () => {
+      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', update, true)
+    }
+  }, [open])
 
   useEffect(() => {
     if (!open && !loginOpen) return
     function onDown(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setOpen(false)
-      }
+      const target = event.target as Node
+      if (rootRef.current?.contains(target) || menuRef.current?.contains(target)) return
+      setOpen(false)
     }
     function onKey(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -67,13 +117,15 @@ export function AdminAccountMenu({
   }, [location.pathname])
 
   useEffect(() => {
-    if (!loginOpen) return
+    if (!loginOpen && !open) return
     const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    if (loginOpen || (open && window.matchMedia('(max-width: 768px)').matches)) {
+      document.body.style.overflow = 'hidden'
+    }
     return () => {
       document.body.style.overflow = prev
     }
-  }, [loginOpen])
+  }, [loginOpen, open])
 
   if (loading) return null
 
@@ -112,7 +164,7 @@ export function AdminAccountMenu({
 
   if (!user) {
     return (
-      <div className={rootClass} ref={ref}>
+      <div className={rootClass} ref={rootRef}>
         <button
           type="button"
           className={styles.login}
@@ -191,9 +243,80 @@ export function AdminAccountMenu({
 
   const displayName = user.name?.trim() || 'Administrador'
 
+  const menu =
+    open && coords
+      ? createPortal(
+          <div className={styles.menuLayer} role="presentation">
+            <button
+              type="button"
+              className={styles.menuScrim}
+              aria-label="Cerrar menú"
+              onClick={() => setOpen(false)}
+            />
+            <div
+              ref={menuRef}
+              className={styles.menu}
+              role="menu"
+              aria-label="Administración"
+              style={{
+                top: coords.top,
+                left: coords.left,
+                width: coords.width,
+                maxHeight: coords.maxHeight,
+              }}
+            >
+              <div className={styles.menuHead}>
+                <span className={styles.avatarLg} aria-hidden="true">
+                  {initialOf(user.name, user.email)}
+                </span>
+                <div className={styles.who}>
+                  <p className={styles.name}>{displayName}</p>
+                  <p className={styles.email}>{user.email}</p>
+                </div>
+              </div>
+
+              <div className={styles.list}>
+                {ADMIN_LINKS.map((item) => {
+                  const active = location.pathname === item.to
+                  return (
+                    <Link
+                      key={item.to}
+                      className={active ? `${styles.item} ${styles.itemActive}` : styles.item}
+                      role="menuitem"
+                      to={item.to}
+                      onClick={() => {
+                        setOpen(false)
+                        onNavigate?.()
+                      }}
+                    >
+                      <span>{item.label}</span>
+                      {active ? <span className={styles.dot} aria-hidden="true" /> : null}
+                    </Link>
+                  )
+                })}
+              </div>
+
+              <div className={styles.divider} />
+
+              <button
+                type="button"
+                className={`${styles.item} ${styles.logout}`}
+                role="menuitem"
+                onClick={() => void handleLogout()}
+              >
+                <span>Cerrar sesión</span>
+                <LogoutIcon />
+              </button>
+            </div>
+          </div>,
+          document.body,
+        )
+      : null
+
   return (
-    <div className={rootClass} ref={ref}>
+    <div className={rootClass} ref={rootRef}>
       <button
+        ref={triggerRef}
         type="button"
         className={styles.trigger}
         aria-haspopup="menu"
@@ -206,53 +329,7 @@ export function AdminAccountMenu({
         </span>
         <ChevronIcon className={open ? styles.chevOpen : styles.chev} />
       </button>
-
-      {open ? (
-        <div className={styles.menu} role="menu" aria-label="Administración">
-          <div className={styles.menuHead}>
-            <span className={styles.avatarLg} aria-hidden="true">
-              {initialOf(user.name, user.email)}
-            </span>
-            <div className={styles.who}>
-              <p className={styles.name}>{displayName}</p>
-              <p className={styles.email}>{user.email}</p>
-            </div>
-          </div>
-
-          <div className={styles.list}>
-            {ADMIN_LINKS.map((item) => {
-              const active = location.pathname === item.to
-              return (
-                <Link
-                  key={item.to}
-                  className={active ? `${styles.item} ${styles.itemActive}` : styles.item}
-                  role="menuitem"
-                  to={item.to}
-                  onClick={() => {
-                    setOpen(false)
-                    onNavigate?.()
-                  }}
-                >
-                  <span>{item.label}</span>
-                  {active ? <span className={styles.dot} aria-hidden="true" /> : null}
-                </Link>
-              )
-            })}
-          </div>
-
-          <div className={styles.divider} />
-
-          <button
-            type="button"
-            className={`${styles.item} ${styles.logout}`}
-            role="menuitem"
-            onClick={() => void handleLogout()}
-          >
-            <span>Cerrar sesión</span>
-            <LogoutIcon />
-          </button>
-        </div>
-      ) : null}
+      {menu}
     </div>
   )
 }
