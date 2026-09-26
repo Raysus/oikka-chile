@@ -31,11 +31,16 @@ type MenuCoords = {
 }
 
 function placeMenu(trigger: DOMRect): MenuCoords {
-  const width = Math.min(MENU_WIDTH, window.innerWidth - VIEWPORT_PAD * 2)
-  const left = Math.min(
-    Math.max(VIEWPORT_PAD, trigger.right - width),
-    window.innerWidth - width - VIEWPORT_PAD,
-  )
+  const narrow = window.innerWidth <= 768
+  const width = narrow
+    ? window.innerWidth - VIEWPORT_PAD * 2
+    : Math.min(MENU_WIDTH, window.innerWidth - VIEWPORT_PAD * 2)
+  const left = narrow
+    ? VIEWPORT_PAD
+    : Math.min(
+        Math.max(VIEWPORT_PAD, trigger.right - width),
+        window.innerWidth - width - VIEWPORT_PAD,
+      )
   const spaceBelow = window.innerHeight - trigger.bottom - MENU_GAP - VIEWPORT_PAD
   const spaceAbove = trigger.top - MENU_GAP - VIEWPORT_PAD
   const preferBelow = spaceBelow >= 220 || spaceBelow >= spaceAbove
