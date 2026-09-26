@@ -59,3 +59,19 @@
   font-size: 0.82rem;
   color: #6f7772;
 }
+
+.legal {
+  display: flex;
+  gap: 0.85rem;
+  margin-top: 0.55rem;
+}
+
+.legal a {
+  color: #c9a84a;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.legal a:hover {
+  color: #fff;
+}

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { footer, site } from '../content'
 import styles from './Footer.module.css'
 
@@ -12,6 +13,9 @@ export function Footer() {
           <div>
             <p className={styles.brand}>{site.name}</p>
             <p className={styles.note}>{footer.note}</p>
+            <nav className={styles.legal} aria-label="Legal">
+              <Link to="/privacidad">Privacidad</Link>
+            </nav>
           </div>
         </div>
         <p className={styles.copy}>
